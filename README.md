@@ -39,7 +39,7 @@ npm run build
 Crie `.env.local` com:
 
 ```bash
-NEXT_PUBLIC_SITE_URL=https://lubriexpresscombr.vercel.app
+NEXT_PUBLIC_SITE_URL=https://lubriexpress.vercel.app
 ```
 
 Quando o domínio oficial estiver pronto, altere para o domínio final.
@@ -54,7 +54,7 @@ Quando o domínio oficial estiver pronto, altere para o domínio final.
 
 Preview/produção de teste:
 
-https://lubriexpresscombr.vercel.app
+https://lubriexpress.vercel.app
 
 ## Observações
 

@@ -43,7 +43,7 @@ export const company = {
   mapsUrl: "https://maps.app.goo.gl/LcuwnvZdwe3rb6ts5",
   instagram: "https://www.instagram.com/lubriexpress2/",
   facebook: "https://www.facebook.com/LubriExpress2/",
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://lubriexpresscombr.vercel.app",
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://lubriexpress.vercel.app",
 };
 
 export const navItems = [
