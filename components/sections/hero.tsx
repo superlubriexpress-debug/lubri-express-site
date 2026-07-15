@@ -1,0 +1,93 @@
+import Image from "next/image";
+import { ArrowRight, CheckCircle2, MapPin } from "lucide-react";
+
+import { BookingButton } from "@/components/booking/booking-button";
+import { Button } from "@/components/ui/button";
+import { assets, company, heroHighlights, ratingStars } from "@/lib/site-data";
+
+export function HeroSection() {
+  return (
+    <section id="inicio" className="relative min-h-screen overflow-hidden bg-ink text-white">
+      <div className="absolute inset-0">
+        <Image
+          src={assets.hero}
+          alt="Centro automotivo Lubri Express em Itapetininga"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/75 to-black/10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/15 to-black" />
+      </div>
+
+      <div className="container-x relative grid min-h-screen items-center gap-12 pb-16 pt-32 lg:grid-cols-[1.08fr_0.92fr]">
+        <div className="max-w-3xl">
+          <span className="eyebrow-inv rounded-full bg-accent px-4 py-2 text-ink">Auto Center em Itapetininga</span>
+          <h1 className="h-display mt-7 max-w-3xl text-5xl leading-none text-white sm:text-6xl lg:text-7xl">
+            Troca de óleo, revisão e <span className="text-accent">diagnóstico</span> com atendimento direto.
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-neutral-200 sm:text-xl">
+            Oficina para quem quer resolver o carro sem perder tempo: você chama no WhatsApp, combina o melhor horário e recebe orientação clara sobre o serviço.
+          </p>
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <BookingButton>Agendar pelo WhatsApp</BookingButton>
+            <Button asChild variant="ghost" className="border border-white/25">
+              <a href={company.mapsUrl} target="_blank" rel="noreferrer">
+                <MapPin className="h-4 w-4" />
+                Abrir rota
+              </a>
+            </Button>
+          </div>
+
+          <div className="mt-10 grid gap-3 sm:grid-cols-3">
+            {heroHighlights.map((item) => {
+              const Icon = item.icon;
+              return (
+                <div key={item.label} className="flex items-center gap-3 rounded-lg border border-white/10 bg-white/10 p-4 backdrop-blur">
+                  <span className="grid h-10 w-10 place-items-center rounded-lg bg-accent text-ink">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <p className="min-w-0 break-words text-sm font-bold leading-5 text-white">{item.label}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <aside className="hidden lg:block">
+          <div className="rounded-lg border border-white/15 bg-black/45 p-7 shadow-2xl backdrop-blur-md">
+            <div className="flex items-center justify-between gap-4">
+              <p className="eyebrow-inv">Especialidade</p>
+              <div className="flex text-accent" aria-label="Avaliação 5 estrelas">
+                {ratingStars.map((Icon, index) => (
+                  <Icon key={index} className="h-4 w-4 fill-current" />
+                ))}
+              </div>
+            </div>
+            <h2 className="h-display mt-5 text-3xl text-white">Câmbio automático com máquina</h2>
+            <p className="mt-4 leading-7 text-neutral-300">
+              Troca completa do fluido do câmbio com equipamento especializado, diagnóstico e orientação para veículos nacionais e importados.
+            </p>
+            <div className="mt-6 grid gap-3">
+              {["Diagnóstico antes do serviço", "Fluido correto para o veículo", "Procedimento limpo e monitorado"].map((item) => (
+                <div key={item} className="flex items-center gap-3 rounded-lg bg-white/5 p-3 text-sm font-semibold">
+                  <CheckCircle2 className="h-5 w-5 text-accent" />
+                  {item}
+                </div>
+              ))}
+            </div>
+            <Button asChild className="mt-7 w-full">
+              <a href="#cambio">
+                Ver detalhes
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </Button>
+          </div>
+        </aside>
+      </div>
+
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-accent" />
+    </section>
+  );
+}
