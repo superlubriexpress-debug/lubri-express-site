@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
+import Script from "next/script";
 
 import "./globals.css";
 import { company } from "@/lib/site-data";
-import { localBusinessSchema } from "@/lib/schema";
+import { autoRepairSchema } from "@/lib/schema";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -17,30 +18,39 @@ const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
 });
 
+const seoTitle = "Lubri Express Auto Center | Mecânica, Elétrica e Câmbio em Itapetininga";
+const seoDescription =
+  "Lubri Express Auto Center em Itapetininga: mecânica geral, elétrica automotiva, troca de óleo de motor, câmbio automático com máquina, freios, suspensão e higienização de ar-condicionado. Comprou pneus no Tenda? Ganhe alinhamento grátis na Lubri Express.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(company.siteUrl),
   title: {
-    default: `${company.name} | Oficina em Itapetininga`,
+    default: seoTitle,
     template: `%s | ${company.name}`,
   },
-  description: company.description,
+  description: seoDescription,
   keywords: [
     "Lubri Express",
-    "auto center Itapetininga",
-    "troca de óleo Itapetininga",
-    "câmbio automático com máquina",
-    "diagnóstico eletrônico",
-    "revisão preventiva",
+    "Lubri Express Auto Center",
+    "mecânica em Itapetininga",
+    "elétrica automotiva em Itapetininga",
+    "troca de óleo em Itapetininga",
+    "óleo de câmbio automático com máquina",
+    "troca de correia dentada",
+    "motor de partida",
+    "alternador",
+    "limpeza de bicos",
     "alinhamento e balanceamento",
+    "alinhamento grátis Tenda",
   ],
   authors: [{ name: "Lubri Express Auto Center" }],
-  creator: "Lubri Express Auto Center",
+  creator: "Gean Maikon",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: `${company.name} | Oficina em Itapetininga`,
-    description: company.description,
+    title: seoTitle,
+    description: seoDescription,
     url: company.siteUrl,
     siteName: company.name,
     locale: "pt_BR",
@@ -56,8 +66,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${company.name} | Oficina em Itapetininga`,
-    description: company.description,
+    title: seoTitle,
+    description:
+      "Mecânica, elétrica automotiva, troca de óleo, câmbio automático com máquina e parceria de alinhamento grátis com o Tenda em Itapetininga.",
     images: ["/assets/real/fachada.jpg"],
   },
   robots: {
@@ -96,10 +107,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           Pular para o conteúdo
         </a>
         {children}
-        <script
+        <Script
+          id="lubri-express-auto-repair-schema"
           type="application/ld+json"
-          suppressHydrationWarning
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema()) }}
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(autoRepairSchema()) }}
         />
       </body>
     </html>

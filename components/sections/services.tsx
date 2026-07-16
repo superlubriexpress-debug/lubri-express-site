@@ -25,16 +25,24 @@ export function ServicesSection() {
             return (
               <FadeIn key={service.id} delay={Math.min(index * 0.03, 0.18)}>
                 <article className="card-service group h-full">
-                  {service.img && (
-                    <div className="relative h-48 overflow-hidden">
+                  <div className="relative h-48 overflow-hidden bg-ink">
+                    {service.img ? (
                       <Image src={service.img} alt={service.title} fill sizes="(min-width: 1024px) 33vw, 100vw" className="object-cover transition duration-500 group-hover:scale-105" />
-                    </div>
-                  )}
-                  <div className="p-6">
-                    <div className="grid h-12 w-12 place-items-center rounded-lg bg-accent text-ink">
+                    ) : (
+                      <div className="flex h-full items-center justify-center bg-[radial-gradient(circle_at_30%_20%,rgba(255,196,0,0.22),transparent_34%),linear-gradient(135deg,#151515,#050505)]">
+                        <div className="grid h-20 w-20 place-items-center rounded-2xl border border-accent/35 bg-accent/10 text-accent shadow-[0_24px_60px_-32px_rgba(255,196,0,0.75)]">
+                          <Icon className="h-10 w-10" />
+                        </div>
+                        <div className="pointer-events-none absolute inset-x-6 bottom-5 h-px bg-gradient-to-r from-transparent via-accent/45 to-transparent" />
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+                    <div className="absolute bottom-4 left-4 grid h-12 w-12 place-items-center rounded-lg bg-accent text-ink shadow-glow">
                       <Icon className="h-6 w-6" />
                     </div>
-                    <h3 className="h-display mt-5 text-2xl leading-tight">{service.title}</h3>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="h-display text-2xl leading-tight">{service.title}</h3>
                     <p className="mt-3 min-h-20 leading-7 text-neutral-600">{service.desc}</p>
                     <BookingButton serviceId={service.id} variant="outline" className="mt-6 w-full">
                       Pedir orçamento

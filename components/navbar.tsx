@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { Menu, Phone, MapPin } from "lucide-react";
 
 import { BookingButton } from "@/components/booking/booking-button";
@@ -56,11 +55,6 @@ export function Navbar() {
                     </a>
                   </SheetClose>
                 ))}
-                <SheetClose asChild>
-                  <Link href="/painel" className="rounded-lg px-3 py-3 font-display text-lg font-bold text-accent transition hover:bg-white/10">
-                    Painel
-                  </Link>
-                </SheetClose>
               </nav>
 
               <div className="mt-10 grid gap-3">
@@ -92,9 +86,6 @@ export function Navbar() {
               {item.label}
             </a>
           ))}
-          <Link href="/painel" className="rounded-full border border-accent/45 px-4 py-3 text-sm font-bold text-accent transition hover:bg-accent hover:text-ink">
-            Painel
-          </Link>
         </nav>
 
         <div className="hidden items-center gap-3 xl:flex lg:flex-1 lg:justify-end">

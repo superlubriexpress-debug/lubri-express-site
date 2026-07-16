@@ -23,7 +23,8 @@ Responsavel tecnico: Gean Maikon.
 - `lib/`: dados, utilitarios e schemas SEO.
 - `hooks/`: hooks reutilizaveis.
 - `styles/`: estilos da identidade visual.
-- `public/assets/`: imagens, marca e logos.
+- `public/assets/`: imagens reais, marca e serviços.
+- `public/brands/`: logos oficiais de fabricantes usadas na seção de marcas.
 
 ## Comandos
 
@@ -47,7 +48,6 @@ NEXT_PUBLIC_SITE_URL=https://lubriexpress.com.br
 
 - `/`: site principal.
 - `/site`: rota de previa, marcada como `noindex`.
-- `/painel`: area administrativa em preparacao.
 
 ## Identidade
 

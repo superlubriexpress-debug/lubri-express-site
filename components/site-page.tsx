@@ -20,7 +20,7 @@ type SitePageProps = {
   brandDisplay?: "names" | "logos";
 };
 
-export function SitePage({ brandDisplay = "names" }: SitePageProps) {
+export function SitePage({ brandDisplay = "logos" }: SitePageProps) {
   return (
     <div className="min-h-screen bg-white text-ink">
       <Navbar />

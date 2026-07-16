@@ -12,7 +12,13 @@ export function Footer() {
             <div>
               <h2 className="font-display text-xl font-bold">{company.name}</h2>
               <p className="mt-1 text-sm text-neutral-400">{company.tagline}</p>
-              <p className="mt-4 max-w-md text-sm leading-6 text-neutral-500">{company.address}</p>
+              <p className="mt-4 max-w-md text-sm leading-6 text-neutral-400">
+                Unidade Itapetininga: {company.address}
+              </p>
+              <div className="mt-4 grid gap-1 text-xs leading-5 text-neutral-600">
+                <p>Razão Social: [preencher razão social]</p>
+                <p>CNPJ: [preencher CNPJ]</p>
+              </div>
             </div>
           </div>
 

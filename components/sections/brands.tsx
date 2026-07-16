@@ -2,13 +2,10 @@ import Image from "next/image";
 
 import { Badge } from "@/components/ui/badge";
 import { brandLogos, brands } from "@/lib/site-data";
-import { cn } from "@/lib/utils";
 
 type BrandsSectionProps = {
   display?: "names" | "logos";
 };
-
-const compactLogoNames = new Set(["Shell", "Petronas"]);
 
 export function BrandsSection({ display = "names" }: BrandsSectionProps) {
   const nameLoop = [...brands, ...brands];
@@ -36,27 +33,23 @@ export function BrandsSection({ display = "names" }: BrandsSectionProps) {
         <div className="relative mt-12" aria-hidden="true">
           <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-ink to-transparent md:w-36" />
           <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-ink to-transparent md:w-36" />
-          <div className="flex animate-marquee items-center gap-5 whitespace-nowrap py-2">
-          {logoLoop.map((brand, index) => (
-            <article
-              key={`${brand.name}-${index}`}
-              className="group flex h-32 w-48 shrink-0 flex-col justify-between rounded-[1.35rem] border border-white/10 bg-white/[0.06] p-3 shadow-[0_24px_70px_-44px_rgba(0,0,0,0.95)] ring-1 ring-white/[0.03] transition duration-300 hover:-translate-y-1 hover:border-accent/55 hover:bg-white/[0.09]"
-            >
-              <div className="grid h-20 place-items-center rounded-2xl bg-white px-5 shadow-inner shadow-black/10">
+          <div className="flex animate-marquee items-center gap-4 whitespace-nowrap py-2">
+            {logoLoop.map((brand, index) => (
+              <article
+                key={`${brand.name}-${index}`}
+                className="flex h-[92px] w-[170px] shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white p-5 shadow-[0_22px_55px_-36px_rgba(255,255,255,0.55)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_70px_-38px_rgba(255,196,0,0.7)]"
+              >
                 <Image
                   src={brand.logo}
-                  alt=""
-                  width={180}
-                  height={72}
-                  className={cn("max-h-12 w-auto max-w-[8.75rem] object-contain", compactLogoNames.has(brand.name) && "max-h-10 max-w-[5.5rem]")}
+                  alt={brand.name}
+                  width={150}
+                  height={70}
+                  quality={100}
+                  loading="lazy"
+                  className="max-h-[70%] max-w-[85%] object-contain"
                 />
-              </div>
-              <div className="flex items-center justify-between gap-3 px-1">
-                <span className="font-display text-sm font-bold text-white">{brand.name}</span>
-                <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_18px_rgba(255,196,0,0.85)]" />
-              </div>
-            </article>
-          ))}
+              </article>
+            ))}
           </div>
         </div>
       ) : (
