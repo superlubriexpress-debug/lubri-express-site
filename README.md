@@ -1,6 +1,8 @@
 # Lubri Express Auto Center
 
-Site premium da Lubri Express Auto Center, migrado do Lovable para uma base compatível com v0, Next.js App Router, TypeScript, Tailwind CSS, shadcn/ui e Vercel.
+Site oficial da Lubri Express Auto Center, organizado em uma base moderna com Next.js, React, TypeScript e Tailwind CSS.
+
+Responsavel tecnico: Gean Maikon.
 
 ## Stack
 
@@ -11,18 +13,17 @@ Site premium da Lubri Express Auto Center, migrado do Lovable para uma base comp
 - shadcn/ui
 - Lucide Icons
 - Framer Motion
-- Vercel
 
 ## Estrutura
 
 - `app/`: rotas, metadata, sitemap e robots.
-- `components/`: componentes do site, UI, booking e animações.
-- `components/ui/`: componentes base compatíveis com shadcn/ui.
-- `components/sections/`: seções da home.
-- `lib/`: dados, utilitários e schemas SEO.
-- `hooks/`: hooks reutilizáveis.
+- `components/`: componentes do site, UI, agendamento e animacoes.
+- `components/ui/`: componentes base reutilizaveis.
+- `components/sections/`: secoes da pagina.
+- `lib/`: dados, utilitarios e schemas SEO.
+- `hooks/`: hooks reutilizaveis.
 - `styles/`: estilos da identidade visual.
-- `public/assets/`: imagens e marca.
+- `public/assets/`: imagens, marca e logos.
 
 ## Comandos
 
@@ -34,30 +35,20 @@ npm run typecheck
 npm run build
 ```
 
-## Variáveis de ambiente
+## Variaveis de ambiente
 
 Crie `.env.local` com:
 
 ```bash
-NEXT_PUBLIC_SITE_URL=https://lubriexpress.vercel.app
+NEXT_PUBLIC_SITE_URL=https://lubriexpress.com.br
 ```
-
-Quando o domínio oficial estiver pronto, altere para o domínio final.
 
 ## Rotas
 
 - `/`: site principal.
-- `/site`: rota de prévia, marcada como `noindex`.
-- `/painel`: placeholder da área administrativa.
+- `/site`: rota de previa, marcada como `noindex`.
+- `/painel`: area administrativa em preparacao.
 
-## Deploy atual
-
-Preview/produção de teste:
-
-https://lubriexpress.vercel.app
-
-## Observações
+## Identidade
 
 O projeto preserva a identidade Lubri Express: preto `#111111`, branco `#FFFFFF` e amarelo `#FFC400`.
-
-O código foi organizado para continuar evoluindo no v0 sem recriar o site do zero.

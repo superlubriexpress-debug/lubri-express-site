@@ -13,5 +13,5 @@ export const metadata: Metadata = {
 };
 
 export default function SitePreviewPage() {
-  return <SitePage />;
+  return <SitePage brandDisplay="logos" />;
 }

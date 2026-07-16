@@ -17,8 +17,8 @@ const eslintConfig = [
     ignores: [
       ".next/**",
       "node_modules/**",
-      ".tmp-lovable-assets/**",
-      ".tmp-lovable-source/**",
+      ".tmp-imported-assets/**",
+      ".tmp-imported-source/**",
       "legacy-site/**",
       "site/**",
       "css/**",

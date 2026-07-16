@@ -9,8 +9,8 @@ pnpm-debug.log*
 .env
 .env.local
 .env.*.local
-/.tmp-lovable-assets/
-/.tmp-lovable-source/
+/.tmp-imported-assets/
+/.tmp-imported-source/
 /legacy-site/
 /previews/
 /css/

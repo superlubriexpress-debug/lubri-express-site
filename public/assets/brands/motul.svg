@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 96" role="img" aria-label="Motul">
+  <rect width="240" height="96" rx="24" fill="#ffffff"/>
+  <rect x="34" y="28" width="172" height="40" rx="6" fill="#e30613"/>
+  <text x="120" y="56" text-anchor="middle" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="32" font-weight="900" fill="#ffffff">MOTUL</text>
+</svg>

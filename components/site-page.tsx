@@ -16,7 +16,11 @@ import { TransmissionSection } from "@/components/sections/transmission";
 import { TrustBar } from "@/components/sections/trust-bar";
 import { WhatsAppFloatingButton } from "@/components/sections/whatsapp-floating-button";
 
-export function SitePage() {
+type SitePageProps = {
+  brandDisplay?: "names" | "logos";
+};
+
+export function SitePage({ brandDisplay = "names" }: SitePageProps) {
   return (
     <div className="min-h-screen bg-white text-ink">
       <Navbar />
@@ -28,7 +32,7 @@ export function SitePage() {
         <ProcessSection />
         <DifferentialsSection />
         <StatsSection />
-        <BrandsSection />
+        <BrandsSection display={brandDisplay} />
         <GallerySection />
         <TestimonialsSection />
         <FAQSection />
