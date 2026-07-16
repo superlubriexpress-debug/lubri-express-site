@@ -64,7 +64,9 @@ export function Navbar() {
               </nav>
 
               <div className="mt-10 grid gap-3">
-                <BookingButton className="w-full">Agendar pelo WhatsApp</BookingButton>
+                <BookingButton className="w-full" onClick={() => setOpen(false)}>
+                  Agendar pelo WhatsApp
+                </BookingButton>
                 <Button asChild variant="outline" className="border-white/15 bg-transparent text-white hover:bg-white/10">
                   <a href={company.mapsUrl} target="_blank" rel="noreferrer">
                     <MapPin className="h-4 w-4" />

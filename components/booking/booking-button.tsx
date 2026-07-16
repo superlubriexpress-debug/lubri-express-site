@@ -12,8 +12,20 @@ type BookingButtonProps = ButtonProps & {
 };
 
 export function BookingButton({ serviceId, children = "Agendar serviço", type = "button", ...props }: BookingButtonProps) {
+  const { onClick, ...buttonProps } = props;
+
   return (
-    <Button type={type} onClick={() => openBookingModal(serviceId)} {...props}>
+    <Button
+      type={type}
+      onClick={(event) => {
+        onClick?.(event);
+
+        if (!event.defaultPrevented) {
+          openBookingModal(serviceId);
+        }
+      }}
+      {...buttonProps}
+    >
       <MessageCircle className="h-4 w-4" />
       {children}
     </Button>

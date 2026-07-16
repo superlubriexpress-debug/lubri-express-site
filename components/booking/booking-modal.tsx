@@ -42,9 +42,9 @@ export function BookingModal() {
       const detail = (event as CustomEvent<{ preselect?: string }>).detail;
       setOpen(true);
       setStep(0);
-      if (detail?.preselect) {
-        setSelected((previous) => (previous.includes(detail.preselect!) ? previous : [...previous, detail.preselect!]));
-      }
+      setSelected(detail?.preselect ? [detail.preselect] : []);
+      setVehicle(initialVehicle);
+      setContact(initialContact);
     };
 
     window.addEventListener(BOOKING_EVENT, handler);
