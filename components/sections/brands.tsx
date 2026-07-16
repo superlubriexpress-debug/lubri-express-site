@@ -34,22 +34,38 @@ export function BrandsSection({ display = "names" }: BrandsSectionProps) {
           <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-ink to-transparent md:w-36" />
           <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-ink to-transparent md:w-36" />
           <div className="flex animate-marquee items-center gap-4 whitespace-nowrap py-2">
-            {logoLoop.map((brand, index) => (
-              <article
-                key={`${brand.name}-${index}`}
-                className="flex h-[92px] w-[170px] shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white p-5 shadow-[0_22px_55px_-36px_rgba(255,255,255,0.55)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_70px_-38px_rgba(255,196,0,0.7)]"
-              >
-                <Image
-                  src={brand.logo}
-                  alt={brand.name}
-                  width={150}
-                  height={70}
-                  quality={100}
-                  loading="lazy"
-                  className="max-h-[70%] max-w-[85%] object-contain"
-                />
-              </article>
-            ))}
+            {logoLoop.map((brand, index) => {
+              const isMotul = brand.name === "Motul";
+
+              return (
+                <article
+                  key={`${brand.name}-${index}`}
+                  className="flex h-[92px] w-[170px] shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white p-5 shadow-[0_22px_55px_-36px_rgba(255,255,255,0.55)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_70px_-38px_rgba(255,196,0,0.7)]"
+                >
+                  <div
+                    className={
+                      isMotul
+                        ? "flex aspect-[219.5/60] w-full items-center justify-center bg-[#ed252f]"
+                        : "flex h-full w-full items-center justify-center"
+                    }
+                  >
+                    <Image
+                      src={brand.logo}
+                      alt={brand.name}
+                      width={isMotul ? 220 : 150}
+                      height={isMotul ? 60 : 70}
+                      quality={100}
+                      loading="lazy"
+                      className={
+                        isMotul
+                          ? "h-full w-full object-contain brightness-0 invert"
+                          : "max-h-[70%] max-w-[85%] object-contain"
+                      }
+                    />
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       ) : (

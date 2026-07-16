@@ -11,7 +11,9 @@ node_modules/
 /css/
 /js/
 /tools/
-/scripts/
+/scripts/*
+!/scripts/update-official-mobil-assets.mjs
+!/scripts/validate-brand-assets.mjs
 /previews/
 /img/
 /*.zip

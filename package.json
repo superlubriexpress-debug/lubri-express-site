@@ -4,10 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/validate-brand-assets.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "brands:check": "node scripts/validate-brand-assets.mjs",
+    "brands:update:mobil": "node scripts/update-official-mobil-assets.mjs"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",

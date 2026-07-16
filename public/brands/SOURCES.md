@@ -2,12 +2,14 @@
 
 Responsável técnico: Gean Maikon.
 
-- Mobil, Mobil 1 e Mobil Super: https://www.mobil.com/
+- Mobil: https://corporate.exxonmobil.com/locations/hong-kong/our-brands
+- Mobil 1: https://loveofdriving.mobil.com/
+- Mobil Super: https://www.mobil.com/
 - Castrol: https://www.castrol.com/
 - Lubrax: https://www.lubrax.com.br/
 - Petronas: https://www.petronas.com/
 - Valvoline: https://www.valvolineglobal.com/
-- Motul: https://www.motul.com/br/pt-BR
+- Motul: https://www.motul.com/en-US (vetor e aplicacao oficial branca sobre #ED252F)
 - TotalEnergies: https://totalenergies.com.br/
 - ELF: https://elf.com/en
 - Ipiranga Lubrificantes: https://www.ipiranga.com.br/
@@ -29,7 +31,7 @@ Responsável técnico: Gean Maikon.
 - Schaeffler: https://www.schaeffler.com.br/
 - Gates: https://go.gates.com/IR-Marketing-Toolbox-Brand.html
 - Continental: https://continentaltire.com/media
-- Dayco: https://www.dayco.com/
+- Dayco: https://www.dayco.com/wp-content/uploads/2024/11/Dayco_Logo_MFA_Color_Header.png
 - TRW: https://aftermarket.zf.com/en/aftermarket-portal/our-brands/trw/
 - Cofap: https://mmcofap.com.br/
 - Monroe: https://www.monroe.com/

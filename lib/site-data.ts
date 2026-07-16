@@ -232,7 +232,7 @@ export const brands = [
 ];
 
 export const brandLogos = [
-  { name: "Mobil", logo: "/brands/mobil.png" },
+  { name: "Mobil", logo: "/brands/mobil.jpg" },
   { name: "Mobil Super", logo: "/brands/mobil-super.svg" },
   { name: "Mobil 1", logo: "/brands/mobil-1.svg" },
   { name: "Castrol", logo: "/brands/castrol.svg" },
@@ -261,7 +261,7 @@ export const brandLogos = [
   { name: "Schaeffler", logo: "/brands/schaeffler.jpg" },
   { name: "Gates", logo: "/brands/gates.png" },
   { name: "Continental", logo: "/brands/continental.png" },
-  { name: "Dayco", logo: "/brands/dayco.png" },
+  { name: "Dayco", logo: "/brands/dayco.webp" },
   { name: "TRW", logo: "/brands/trw.svg" },
   { name: "Cofap", logo: "/brands/cofap.svg" },
   { name: "Monroe", logo: "/brands/monroe.png" },
