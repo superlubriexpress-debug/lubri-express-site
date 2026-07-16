@@ -215,7 +215,7 @@ export const brandLogos = [
   { name: "Motul", logo: "/assets/brands/motul.svg" },
   { name: "Castrol", logo: "/assets/brands/castrol.svg" },
   { name: "Petronas", logo: "/assets/brands/petronas.svg" },
-  { name: "Lubrax", logo: "/assets/brands/lubrax.svg" },
+  { name: "Lubrax", logo: "/assets/brands/lubrax.png" },
   { name: "Valvoline", logo: "/assets/brands/valvoline.png" },
   { name: "Mann Filter", logo: "/assets/brands/mann-filter.svg" },
   { name: "Tecfil", logo: "/assets/brands/tecfil.svg" },
