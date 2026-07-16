@@ -216,12 +216,12 @@ export const brandLogos = [
   { name: "Castrol", logo: "/assets/brands/castrol.svg" },
   { name: "Petronas", logo: "/assets/brands/petronas.svg" },
   { name: "Lubrax", logo: "/assets/brands/lubrax.svg" },
-  { name: "Valvoline", logo: "/assets/brands/valvoline.svg" },
+  { name: "Valvoline", logo: "/assets/brands/valvoline.png" },
   { name: "Mann Filter", logo: "/assets/brands/mann-filter.svg" },
   { name: "Tecfil", logo: "/assets/brands/tecfil.svg" },
-  { name: "Mahle", logo: "/assets/brands/mahle.svg" },
+  { name: "Mahle", logo: "/assets/brands/mahle.png" },
   { name: "Bosch", logo: "/assets/brands/bosch.svg" },
-  { name: "Fram", logo: "/assets/brands/fram.svg" },
+  { name: "Fram", logo: "/assets/brands/fram.jpg" },
 ];
 
 export const gallery = [
