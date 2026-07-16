@@ -22,7 +22,4 @@ pnpm-debug.log*
 /index.html
 *.zip
 remote-index-*.php
-DNS-VERCEL-LUBRI-EXPRESS.md
-
-.vercel/
 !.env.example

@@ -16,6 +16,5 @@ node_modules/
 /img/
 /*.zip
 /remote-index-*.php
-/DNS-VERCEL-LUBRI-EXPRESS.md
 tsconfig.tsbuildinfo
 .next-dev*.log
