@@ -1,5 +1,21 @@
 import type { SVGProps } from "react";
 
+type WhatsAppIconProps = SVGProps<SVGSVGElement> & {
+  variant?: "black" | "white";
+};
+
+export function WhatsAppIcon({ variant = "black", ...props }: WhatsAppIconProps) {
+  return (
+    <svg viewBox="0 0 720 720" aria-hidden="true" focusable="false" {...props}>
+      <image
+        href={`/icons/whatsapp-glyph-${variant}.svg`}
+        width="720"
+        height="720"
+      />
+    </svg>
+  );
+}
+
 export function TireIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>

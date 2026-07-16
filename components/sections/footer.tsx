@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { WhatsAppIcon } from "@/components/icons";
 import { assets, company, navItems, socialLinks } from "@/lib/site-data";
 
 export function Footer() {
@@ -31,7 +32,15 @@ export function Footer() {
           </nav>
 
           <div className="grid gap-3 lg:justify-end">
-            <a href={`https://wa.me/${company.phoneHref}`} className="font-display text-lg font-bold text-accent">
+            <a
+              href={`https://wa.me/${company.phoneHref}`}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 font-display text-lg font-bold text-accent"
+            >
+              <span className="grid h-8 w-8 place-items-center rounded-lg bg-accent">
+                <WhatsAppIcon className="h-4 w-4" />
+              </span>
               {company.phoneDisplay}
             </a>
             <p className="text-sm font-bold text-neutral-300">{company.city}</p>
@@ -45,7 +54,11 @@ export function Footer() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label={item.label}
-                    className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-white transition hover:border-accent hover:bg-accent hover:text-ink"
+                    className={
+                      item.label === "WhatsApp"
+                        ? "grid h-10 w-10 place-items-center rounded-full border border-accent bg-accent text-ink transition hover:bg-[#ffd94a]"
+                        : "grid h-10 w-10 place-items-center rounded-full border border-white/10 text-white transition hover:border-accent hover:bg-accent hover:text-ink"
+                    }
                   >
                     <Icon className="h-4 w-4" />
                   </a>

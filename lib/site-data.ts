@@ -13,7 +13,6 @@ import {
   Gauge,
   Instagram,
   MapPin,
-  MessageCircle,
   Search,
   ShieldCheck,
   Star,
@@ -25,7 +24,7 @@ import {
   Zap,
 } from "lucide-react";
 
-import { TireIcon } from "@/components/icons";
+import { TireIcon, WhatsAppIcon } from "@/components/icons";
 
 export type SiteIcon = ComponentType<SVGProps<SVGSVGElement>>;
 
@@ -320,12 +319,12 @@ export const socialLinks = [
   { label: "Instagram", href: company.instagram, icon: Instagram },
   { label: "Facebook", href: company.facebook, icon: Facebook },
   { label: "Localização", href: company.mapsUrl, icon: MapPin },
-  { label: "WhatsApp", href: `https://wa.me/${company.phoneHref}`, icon: MessageCircle },
+  { label: "WhatsApp", href: `https://wa.me/${company.phoneHref}`, icon: WhatsAppIcon },
 ];
 
 export const processSteps = [
   {
-    icon: MessageCircle,
+    icon: WhatsAppIcon,
     title: "Você chama no WhatsApp",
     desc: "Conte o que o carro precisa ou selecione os serviços no formulário.",
   },
@@ -343,7 +342,7 @@ export const processSteps = [
 
 export const heroHighlights = [
   { icon: Timer, label: company.hours },
-  { icon: MessageCircle, label: company.phoneDisplay },
+  { icon: WhatsAppIcon, label: company.phoneDisplay },
   { icon: ShieldCheck, label: "Revisão e diagnóstico" },
 ];
 

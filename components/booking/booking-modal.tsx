@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useId, useMemo, useState } from "react";
-import { ArrowLeft, ArrowRight, CheckCircle2, MessageCircle, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
 
 import { BOOKING_EVENT } from "@/components/booking/booking-events";
+import { WhatsAppIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { company, serviceOptions } from "@/lib/site-data";
@@ -221,7 +222,7 @@ export function BookingModal() {
               </div>
               <Button asChild className="mt-6 w-full">
                 <a href={whatsappUrl} target="_blank" rel="noreferrer">
-                  <MessageCircle className="h-4 w-4" />
+                  <WhatsAppIcon className="h-4 w-4" />
                   Enviar pelo WhatsApp
                 </a>
               </Button>

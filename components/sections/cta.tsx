@@ -1,8 +1,9 @@
 "use client";
 
 import { useId, useMemo, useState } from "react";
-import { Check, ChevronLeft, ChevronRight, MessageCircle } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight } from "lucide-react";
 
+import { WhatsAppIcon } from "@/components/icons";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { company } from "@/lib/site-data";
@@ -163,7 +164,7 @@ export function CTASection() {
             ) : (
               <Button asChild className="sm:min-w-56">
                 <a href={whatsappUrl} target="_blank" rel="noreferrer">
-                  <MessageCircle className="h-4 w-4" />
+                  <WhatsAppIcon className="h-4 w-4" />
                   Enviar pelo WhatsApp
                 </a>
               </Button>

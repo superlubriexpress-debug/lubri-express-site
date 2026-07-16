@@ -1,9 +1,9 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { MessageCircle } from "lucide-react";
 
 import { openBookingModal } from "@/components/booking/booking-events";
+import { WhatsAppIcon } from "@/components/icons";
 import { Button, type ButtonProps } from "@/components/ui/button";
 
 type BookingButtonProps = ButtonProps & {
@@ -26,7 +26,7 @@ export function BookingButton({ serviceId, children = "Agendar serviço", type =
       }}
       {...buttonProps}
     >
-      <MessageCircle className="h-4 w-4" />
+      <WhatsAppIcon className="h-4 w-4" />
       {children}
     </Button>
   );

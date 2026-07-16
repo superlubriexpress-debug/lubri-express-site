@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Menu, Phone, MapPin } from "lucide-react";
+import { MapPin, Menu } from "lucide-react";
 
 import { BookingButton } from "@/components/booking/booking-button";
+import { WhatsAppIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { assets, company, navItems } from "@/lib/site-data";
@@ -95,7 +96,7 @@ export function Navbar() {
             rel="noreferrer"
             className="inline-flex h-14 min-w-48 items-center gap-3 rounded-lg bg-accent px-5 font-display text-xs font-bold text-ink shadow-glow transition hover:-translate-y-0.5 hover:bg-[#ffd94a]"
           >
-            <Phone className="h-4 w-4" />
+            <WhatsAppIcon className="h-4 w-4" />
             <span className="whitespace-nowrap leading-tight">
               Agende uma visita
               <strong className="block">{company.phoneDisplay.replace("+55 ", "")}</strong>

@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { Clock, MapPin, MessageCircle } from "lucide-react";
+import { Clock, MapPin } from "lucide-react";
 
+import { WhatsAppIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { assets, company } from "@/lib/site-data";
 
@@ -33,7 +34,9 @@ export function MapSection() {
                 {company.hours}
               </p>
               <p className="flex items-center gap-3 font-bold">
-                <MessageCircle className="h-5 w-5 text-accent" />
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-accent">
+                  <WhatsAppIcon className="h-4 w-4" />
+                </span>
                 {company.phoneDisplay}
               </p>
             </div>
@@ -47,7 +50,7 @@ export function MapSection() {
               </Button>
               <Button asChild variant="ghost" className="border border-white/15">
                 <a href={`https://wa.me/${company.phoneHref}`} target="_blank" rel="noreferrer">
-                  <MessageCircle className="h-4 w-4" />
+                  <WhatsAppIcon variant="white" className="h-4 w-4" />
                   WhatsApp
                 </a>
               </Button>
