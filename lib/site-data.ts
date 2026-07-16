@@ -8,11 +8,10 @@ import {
   Cog,
   Cpu,
   Droplets,
-  Facebook,
   Filter,
   Gauge,
-  Instagram,
   MapPin,
+  Phone,
   Search,
   ShieldCheck,
   Star,
@@ -24,7 +23,7 @@ import {
   Zap,
 } from "lucide-react";
 
-import { TireIcon, WhatsAppIcon } from "@/components/icons";
+import { FacebookIcon, InstagramIcon, TireIcon } from "@/components/icons";
 
 export type SiteIcon = ComponentType<SVGProps<SVGSVGElement>>;
 
@@ -231,16 +230,22 @@ export const brands = [
   "Nakata",
 ];
 
-export const brandLogos = [
-  { name: "Mobil", logo: "/brands/mobil.png" },
-  { name: "Mobil Super", logo: "/brands/mobil-super.svg" },
-  { name: "Mobil 1", logo: "/brands/mobil-1.svg" },
-  { name: "Castrol", logo: "/brands/castrol.png" },
-  { name: "Lubrax", logo: "/brands/lubrax.png" },
+type BrandLogo = {
+  name: string;
+  logo: string;
+  scale?: number;
+};
+
+export const brandLogos: BrandLogo[] = [
+  { name: "Mobil", logo: "/brands/mobil.png", scale: 2.8 },
+  { name: "Mobil Super", logo: "/brands/mobil-super.svg", scale: 1.25 },
+  { name: "Mobil 1", logo: "/brands/mobil-1.svg", scale: 1.08 },
+  { name: "Castrol", logo: "/brands/castrol.png", scale: 1.6 },
+  { name: "Lubrax", logo: "/brands/lubrax.png", scale: 3 },
   { name: "Petronas", logo: "/brands/petronas.svg" },
-  { name: "Valvoline", logo: "/brands/valvoline.png" },
+  { name: "Valvoline", logo: "/brands/valvoline.png", scale: 1.9 },
   { name: "Motul", logo: "/brands/motul.svg" },
-  { name: "Shell Helix", logo: "/brands/shell-helix.png" },
+  { name: "Shell Helix", logo: "/brands/shell-helix.png", scale: 3.35 },
   { name: "TotalEnergies", logo: "/brands/totalenergies.svg" },
   { name: "ELF", logo: "/brands/elf.svg" },
   { name: "Ipiranga", logo: "/brands/ipiranga.svg" },
@@ -316,17 +321,31 @@ export const faqs = [
 ];
 
 export const socialLinks = [
-  { label: "Instagram", href: company.instagram, icon: Instagram },
-  { label: "Facebook", href: company.facebook, icon: Facebook },
-  { label: "Localização", href: company.mapsUrl, icon: MapPin },
-  { label: "WhatsApp", href: `https://wa.me/${company.phoneHref}`, icon: WhatsAppIcon },
+  {
+    label: "Instagram",
+    href: company.instagram,
+    icon: InstagramIcon,
+    className: "border-transparent bg-[linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)] text-white",
+  },
+  {
+    label: "Facebook",
+    href: company.facebook,
+    icon: FacebookIcon,
+    className: "border-[#0866ff] bg-[#0866ff] text-white",
+  },
+  {
+    label: "Localização",
+    href: company.mapsUrl,
+    icon: MapPin,
+    className: "border-accent bg-accent text-ink",
+  },
 ];
 
 export const processSteps = [
   {
-    icon: WhatsAppIcon,
-    title: "Você chama no WhatsApp",
-    desc: "Conte o que o carro precisa ou selecione os serviços no formulário.",
+    icon: Search,
+    title: "Você descreve o que precisa",
+    desc: "Escolha um serviço ou conte os sintomas do carro no formulário.",
   },
   {
     icon: ClipboardCheck,
@@ -342,7 +361,7 @@ export const processSteps = [
 
 export const heroHighlights = [
   { icon: Timer, label: company.hours },
-  { icon: WhatsAppIcon, label: company.phoneDisplay },
+  { icon: Phone, label: company.phoneDisplay },
   { icon: ShieldCheck, label: "Revisão e diagnóstico" },
 ];
 

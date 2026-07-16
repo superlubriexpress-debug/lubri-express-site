@@ -42,6 +42,18 @@
     @apply relative overflow-hidden rounded-2xl border border-border bg-white transition duration-300 hover:-translate-y-1.5 hover:border-accent hover:shadow-premium;
   }
 
+  .footer-whatsapp::before {
+    position: absolute;
+    top: -35%;
+    left: -45%;
+    height: 170%;
+    width: 32%;
+    content: "";
+    transform: skewX(-18deg);
+    background: linear-gradient(90deg, transparent, rgb(255 255 255 / 45%), transparent);
+    animation: footer-whatsapp-sheen 4.2s ease-in-out infinite;
+  }
+
   .not-found-art {
     background-image: url("/assets/404.png");
     background-position: center;
@@ -55,5 +67,23 @@
       background-position: center top;
       background-size: auto 62%;
     }
+  }
+}
+
+@keyframes footer-whatsapp-sheen {
+  0%,
+  55% {
+    left: -45%;
+  }
+
+  82%,
+  100% {
+    left: 120%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-whatsapp::before {
+    animation: none;
   }
 }

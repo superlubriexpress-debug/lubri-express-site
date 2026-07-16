@@ -14,7 +14,6 @@ import { StatsSection } from "@/components/sections/stats";
 import { TestimonialsSection } from "@/components/sections/testimonials";
 import { TransmissionSection } from "@/components/sections/transmission";
 import { TrustBar } from "@/components/sections/trust-bar";
-import { WhatsAppFloatingButton } from "@/components/sections/whatsapp-floating-button";
 
 type SitePageProps = {
   brandDisplay?: "names" | "logos";
@@ -40,7 +39,6 @@ export function SitePage({ brandDisplay = "logos" }: SitePageProps) {
         <MapSection />
       </main>
       <Footer />
-      <WhatsAppFloatingButton />
       <BookingModalLoader />
     </div>
   );

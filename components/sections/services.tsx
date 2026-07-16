@@ -15,7 +15,7 @@ export function ServicesSection() {
           <Badge>Serviços</Badge>
           <h2 className="h-display mt-5 text-4xl leading-tight sm:text-5xl">Serviços completos para cuidar do seu carro com qualidade e confiança.</h2>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-neutral-600">
-            Escolha o atendimento e solicite um orçamento direto pelo WhatsApp da Lubri Express.
+            Conheça os serviços e solicite uma avaliação diretamente com a equipe da Lubri Express.
           </p>
         </div>
 

@@ -9,7 +9,7 @@ export function ProcessSection() {
           <Badge>Como funciona</Badge>
           <h2 className="h-display mt-5 text-4xl leading-tight sm:text-5xl">Atendimento direto, sem complicar sua rotina.</h2>
           <p className="mt-5 text-lg leading-8 text-neutral-600">
-            O site foi pensado para transformar interesse em conversa rápida no WhatsApp, com as informações que a oficina precisa para te atender bem.
+            Informe o que o carro precisa e envie os dados essenciais para a equipe preparar um atendimento mais rápido e objetivo.
           </p>
         </div>
 

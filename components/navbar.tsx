@@ -5,7 +5,6 @@ import Image from "next/image";
 import { MapPin, Menu } from "lucide-react";
 
 import { BookingButton } from "@/components/booking/booking-button";
-import { WhatsAppIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { assets, company, navItems } from "@/lib/site-data";
@@ -60,7 +59,7 @@ export function Navbar() {
 
               <div className="mt-10 grid gap-3">
                 <BookingButton className="w-full" onClick={() => setOpen(false)}>
-                  Agendar pelo WhatsApp
+                  Agendar atendimento
                 </BookingButton>
                 <Button asChild variant="outline" className="border-white/15 bg-transparent text-white hover:bg-white/10">
                   <a href={company.mapsUrl} target="_blank" rel="noreferrer">
@@ -90,18 +89,14 @@ export function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-3 xl:flex lg:flex-1 lg:justify-end">
-          <a
-            href={`https://wa.me/${company.phoneHref}`}
-            target="_blank"
-            rel="noreferrer"
+          <BookingButton
             className="inline-flex h-14 min-w-48 items-center gap-3 rounded-lg bg-accent px-5 font-display text-xs font-bold text-ink shadow-glow transition hover:-translate-y-0.5 hover:bg-[#ffd94a]"
           >
-            <WhatsAppIcon className="h-4 w-4" />
             <span className="whitespace-nowrap leading-tight">
-              Agende uma visita
-              <strong className="block">{company.phoneDisplay.replace("+55 ", "")}</strong>
+              Agendar atendimento
+              <strong className="block">Escolha o serviço</strong>
             </span>
-          </a>
+          </BookingButton>
           <a
             href={company.mapsUrl}
             target="_blank"
@@ -110,7 +105,7 @@ export function Navbar() {
           >
             <MapPin className="h-5 w-5 text-accent" />
             <span className="whitespace-nowrap leading-tight">
-              Unidade
+              Como chegar
               <strong className="block">{company.city}</strong>
             </span>
           </a>

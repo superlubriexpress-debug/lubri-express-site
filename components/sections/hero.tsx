@@ -28,10 +28,10 @@ export function HeroSection() {
             Troca de óleo, revisão e <span className="text-accent">diagnóstico</span> com atendimento direto.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-neutral-200 sm:text-xl">
-            Oficina para quem quer resolver o carro sem perder tempo: você chama no WhatsApp, combina o melhor horário e recebe orientação clara sobre o serviço.
+            Oficina para quem quer resolver o carro sem perder tempo: você solicita o atendimento, combina o melhor horário e recebe orientação clara sobre o serviço.
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <BookingButton>Agendar pelo WhatsApp</BookingButton>
+            <BookingButton>Solicitar atendimento</BookingButton>
             <Button asChild variant="ghost" className="border border-white/25">
               <a href={company.mapsUrl} target="_blank" rel="noreferrer">
                 <MapPin className="h-4 w-4" />

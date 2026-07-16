@@ -16,6 +16,22 @@ export function WhatsAppIcon({ variant = "black", ...props }: WhatsAppIconProps)
   );
 }
 
+export function InstagramIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 1000 1000" aria-hidden="true" focusable="false" {...props}>
+      <image href="/icons/instagram-glyph-white.svg" width="1000" height="1000" />
+    </svg>
+  );
+}
+
+export function FacebookIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 2084 2084" aria-hidden="true" focusable="false" {...props}>
+      <image href="/icons/facebook-logo-primary.png" width="2084" height="2084" />
+    </svg>
+  );
+}
+
 export function TireIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
