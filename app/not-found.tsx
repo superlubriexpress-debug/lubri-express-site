@@ -1,30 +1,48 @@
-import Image from "next/image";
+"use client";
+
+import { House } from "lucide-react";
 import Link from "next/link";
 
 export default function NotFound() {
   return (
     <main
       id="conteudo"
-      className="flex min-h-svh items-center justify-center overflow-hidden bg-[#f4f4f4]"
+      aria-labelledby="not-found-title"
+      className="not-found-page relative h-svh min-h-[560px] w-full overflow-hidden bg-[#363636] select-none"
+      onContextMenu={(event) => event.preventDefault()}
+      onDragStart={(event) => event.preventDefault()}
     >
-      <div className="relative aspect-[3/2] w-full max-w-[150svh]">
-        <Image
-          src="/assets/404.png"
-          alt="Pagina nao encontrada - Lubri Express Auto Center"
-          fill
-          priority
-          sizes="(max-aspect-ratio: 3/2) 100vw, 150vh"
-          className="select-none object-contain"
-        />
+      <div className="not-found-art absolute inset-0" aria-hidden="true" />
+      <div
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80"
+        aria-hidden="true"
+      />
 
+      <section className="absolute inset-x-0 bottom-0 z-10 flex min-h-[46%] flex-col items-center justify-center px-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-8 text-center text-white sm:min-h-[36%] sm:px-10">
+        <p
+          role="status"
+          className="mb-3 rounded-full border border-accent/40 bg-black/55 px-4 py-2 font-display text-xs font-bold uppercase tracking-[0.18em] text-accent backdrop-blur-sm"
+        >
+          Erro HTTP 404
+        </p>
+        <h1
+          id="not-found-title"
+          className="font-display text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl"
+        >
+          Página não encontrada
+        </h1>
+        <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/75 sm:text-base">
+          O endereço acessado não existe ou foi movido. Volte ao início para
+          continuar navegando.
+        </p>
         <Link
           href="/site"
-          aria-label="Voltar para o inicio"
-          className="absolute left-[33.79%] top-[85.45%] z-10 min-h-11 w-[31.25%] -translate-y-[12%] rounded-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-black focus-visible:ring-offset-4 sm:h-[8.5%] sm:min-h-0 sm:translate-y-0 sm:rounded-2xl"
+          className="btn-primary mt-6 min-h-14 w-full max-w-xs text-base shadow-[0_16px_40px_rgba(255,196,0,0.28)]"
         >
-          <span className="sr-only">Voltar para o inicio</span>
+          <House aria-hidden="true" />
+          Voltar para o início
         </Link>
-      </div>
+      </section>
     </main>
   );
 }

@@ -41,4 +41,19 @@
   .card-service {
     @apply relative overflow-hidden rounded-2xl border border-border bg-white transition duration-300 hover:-translate-y-1.5 hover:border-accent hover:shadow-premium;
   }
+
+  .not-found-art {
+    background-image: url("/assets/404.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    pointer-events: none;
+  }
+
+  @media (max-width: 639px) {
+    .not-found-art {
+      background-position: center top;
+      background-size: auto 62%;
+    }
+  }
 }

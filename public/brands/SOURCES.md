@@ -10,6 +10,7 @@ Responsável técnico: Gean Maikon.
 - Petronas: https://www.petronas.com/
 - Valvoline: https://www.valvolineglobal.com/
 - Motul: https://www.motul.com/en-US (vetor e aplicacao oficial branca sobre #ED252F)
+- Shell Helix: arquivo oficial fornecido por Gean Maikon
 - TotalEnergies: https://totalenergies.com.br/
 - ELF: https://elf.com/en
 - Ipiranga Lubrificantes: https://www.ipiranga.com.br/
@@ -37,7 +38,6 @@ Responsável técnico: Gean Maikon.
 - Monroe: https://www.monroe.com/
 - Nakata: https://www.nakata.com.br/
 
-Pendentes sem logo oficial isolada e adequada para card branco nesta rodada:
+Pendente sem logo oficial isolada e adequada para card branco nesta rodada:
 
-- Shell Helix
 - INA

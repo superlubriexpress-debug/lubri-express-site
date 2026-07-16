@@ -199,6 +199,7 @@ export const brands = [
   "Mobil Super",
   "Mobil 1",
   "Motul",
+  "Shell Helix",
   "Castrol",
   "Petronas",
   "Lubrax",
@@ -232,14 +233,15 @@ export const brands = [
 ];
 
 export const brandLogos = [
-  { name: "Mobil", logo: "/brands/mobil.jpg" },
+  { name: "Mobil", logo: "/brands/mobil.png" },
   { name: "Mobil Super", logo: "/brands/mobil-super.svg" },
   { name: "Mobil 1", logo: "/brands/mobil-1.svg" },
-  { name: "Castrol", logo: "/brands/castrol.svg" },
+  { name: "Castrol", logo: "/brands/castrol.png" },
   { name: "Lubrax", logo: "/brands/lubrax.png" },
   { name: "Petronas", logo: "/brands/petronas.svg" },
   { name: "Valvoline", logo: "/brands/valvoline.png" },
   { name: "Motul", logo: "/brands/motul.svg" },
+  { name: "Shell Helix", logo: "/brands/shell-helix.png" },
   { name: "TotalEnergies", logo: "/brands/totalenergies.svg" },
   { name: "ELF", logo: "/brands/elf.svg" },
   { name: "Ipiranga", logo: "/brands/ipiranga.svg" },
