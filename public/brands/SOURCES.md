@@ -12,6 +12,7 @@ Responsável técnico: Gean Maikon.
 - ELF: https://elf.com/en
 - Ipiranga Lubrificantes: https://www.ipiranga.com.br/
 - YPF: https://energia-argentina.ypf.com/
+- Texaco Havoline: https://www.texacolubricants.com/content/dam/external/havoline/common/marketing-support/logos/Havoline%20Logo.png
 - Mann Filter: https://www.mann-filter.com/
 - Tecfil: https://www.tecfil.com.br/
 - Mahle: https://www.mahle.com/
@@ -37,5 +38,4 @@ Responsável técnico: Gean Maikon.
 Pendentes sem logo oficial isolada e adequada para card branco nesta rodada:
 
 - Shell Helix
-- Texaco Havoline
 - INA
