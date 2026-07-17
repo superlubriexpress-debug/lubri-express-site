@@ -7,10 +7,11 @@ import { MapPin, Menu } from "lucide-react";
 import { BookingButton } from "@/components/booking/booking-button";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { assets, company, navItems } from "@/lib/site-data";
+import { assets, navItems } from "@/lib/site-data";
+import type { SiteSettings } from "@/lib/site-settings-types";
 import { cn } from "@/lib/utils";
 
-export function Navbar() {
+export function Navbar({ settings }: { settings: SiteSettings }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -41,7 +42,7 @@ export function Navbar() {
                 <div className="flex items-center gap-3">
                   <Image src={assets.logo} alt="" width={44} height={44} className="h-11 w-11 object-contain" />
                   <div>
-                    <SheetTitle className="text-white">{company.shortName}</SheetTitle>
+                    <SheetTitle className="text-white">Lubri Express</SheetTitle>
                     <SheetDescription>Auto Center em Itapetininga</SheetDescription>
                   </div>
                 </div>
@@ -62,7 +63,7 @@ export function Navbar() {
                   Agendar atendimento
                 </BookingButton>
                 <Button asChild variant="outline" className="border-white/15 bg-transparent text-white hover:bg-white/10">
-                  <a href={company.mapsUrl} target="_blank" rel="noreferrer">
+                  <a href={settings.mapsUrl} target="_blank" rel="noreferrer">
                     <MapPin className="h-4 w-4" />
                     Abrir rota
                   </a>
@@ -98,7 +99,7 @@ export function Navbar() {
             </span>
           </BookingButton>
           <a
-            href={company.mapsUrl}
+            href={settings.mapsUrl}
             target="_blank"
             rel="noreferrer"
             className="inline-flex h-14 min-w-44 items-center gap-3 rounded-lg border border-white/15 bg-white/5 px-5 font-display text-xs font-bold text-white transition hover:bg-white/10"
@@ -106,7 +107,7 @@ export function Navbar() {
             <MapPin className="h-5 w-5 text-accent" />
             <span className="whitespace-nowrap leading-tight">
               Como chegar
-              <strong className="block">{company.city}</strong>
+              <strong className="block">{settings.city}</strong>
             </span>
           </a>
         </div>

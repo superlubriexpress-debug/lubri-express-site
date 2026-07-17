@@ -1,4 +1,3 @@
-import { BookingModalLoader } from "@/components/booking/booking-modal-loader";
 import { Navbar } from "@/components/navbar";
 import { BrandsSection } from "@/components/sections/brands";
 import { CTASection } from "@/components/sections/cta";
@@ -14,17 +13,20 @@ import { StatsSection } from "@/components/sections/stats";
 import { TestimonialsSection } from "@/components/sections/testimonials";
 import { TransmissionSection } from "@/components/sections/transmission";
 import { TrustBar } from "@/components/sections/trust-bar";
+import { getPublicSiteSettings } from "@/lib/site-settings";
 
 type SitePageProps = {
   brandDisplay?: "names" | "logos";
 };
 
-export function SitePage({ brandDisplay = "logos" }: SitePageProps) {
+export async function SitePage({ brandDisplay = "logos" }: SitePageProps) {
+  const settings = await getPublicSiteSettings();
+
   return (
     <div className="min-h-screen bg-white text-ink">
-      <Navbar />
+      <Navbar settings={settings} />
       <main id="conteudo">
-        <HeroSection />
+        <HeroSection settings={settings} />
         <TrustBar />
         <ServicesSection />
         <TransmissionSection />
@@ -33,13 +35,12 @@ export function SitePage({ brandDisplay = "logos" }: SitePageProps) {
         <StatsSection />
         <BrandsSection display={brandDisplay} />
         <GallerySection />
-        <TestimonialsSection />
+        <TestimonialsSection settings={settings} />
         <FAQSection />
-        <CTASection />
-        <MapSection />
+        <CTASection settings={settings} />
+        <MapSection settings={settings} />
       </main>
-      <Footer />
-      <BookingModalLoader />
+      <Footer settings={settings} />
     </div>
   );
 }

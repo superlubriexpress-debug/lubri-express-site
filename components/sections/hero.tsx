@@ -1,11 +1,18 @@
 import Image from "next/image";
-import { ArrowRight, CheckCircle2, MapPin } from "lucide-react";
+import { ArrowRight, CheckCircle2, MapPin, Phone, ShieldCheck, Timer } from "lucide-react";
 
 import { BookingButton } from "@/components/booking/booking-button";
 import { Button } from "@/components/ui/button";
-import { assets, company, heroHighlights, ratingStars } from "@/lib/site-data";
+import { assets } from "@/lib/site-data";
+import type { SiteSettings } from "@/lib/site-settings-types";
 
-export function HeroSection() {
+export function HeroSection({ settings }: { settings: SiteSettings }) {
+  const highlights = [
+    { icon: Timer, label: settings.hoursText },
+    { icon: Phone, label: settings.phoneDisplay },
+    { icon: ShieldCheck, label: "Revisão e diagnóstico" },
+  ];
+
   return (
     <section id="inicio" className="relative min-h-screen overflow-hidden bg-ink text-white">
       <div className="absolute inset-0">
@@ -33,7 +40,7 @@ export function HeroSection() {
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <BookingButton>Solicitar atendimento</BookingButton>
             <Button asChild variant="ghost" className="border border-white/25">
-              <a href={company.mapsUrl} target="_blank" rel="noreferrer">
+              <a href={settings.mapsUrl} target="_blank" rel="noreferrer">
                 <MapPin className="h-4 w-4" />
                 Abrir rota
               </a>
@@ -41,7 +48,7 @@ export function HeroSection() {
           </div>
 
           <div className="mt-10 grid gap-3 sm:grid-cols-3">
-            {heroHighlights.map((item) => {
+            {highlights.map((item) => {
               const Icon = item.icon;
               return (
                 <div key={item.label} className="flex items-center gap-3 rounded-lg border border-white/10 bg-white/10 p-4 backdrop-blur">
@@ -59,11 +66,9 @@ export function HeroSection() {
           <div className="rounded-lg border border-white/15 bg-black/45 p-7 shadow-2xl backdrop-blur-md">
             <div className="flex items-center justify-between gap-4">
               <p className="eyebrow-inv">Especialidade</p>
-              <div className="flex text-accent" aria-label="Avaliação 5 estrelas">
-                {ratingStars.map((Icon, index) => (
-                  <Icon key={index} className="h-4 w-4 fill-current" />
-                ))}
-              </div>
+              <span className="rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-[10px] font-black uppercase text-accent">
+                Procedimento especializado
+              </span>
             </div>
             <h2 className="h-display mt-5 text-3xl text-white">Câmbio automático com máquina</h2>
             <p className="mt-4 leading-7 text-neutral-300">

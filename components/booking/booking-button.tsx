@@ -3,7 +3,7 @@
 import type { ReactNode } from "react";
 import { CalendarCheck } from "lucide-react";
 
-import { openBookingModal } from "@/components/booking/booking-events";
+import { openBookingFlow } from "@/components/booking/booking-events";
 import { Button, type ButtonProps } from "@/components/ui/button";
 
 type BookingButtonProps = ButtonProps & {
@@ -21,7 +21,7 @@ export function BookingButton({ serviceId, children = "Agendar serviço", type =
         onClick?.(event);
 
         if (!event.defaultPrevented) {
-          openBookingModal(serviceId);
+          openBookingFlow(serviceId);
         }
       }}
       {...buttonProps}

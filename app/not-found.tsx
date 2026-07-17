@@ -36,7 +36,7 @@ export default function NotFound() {
           continuar navegando.
         </p>
         <Link
-          href="/site"
+          href="/"
           className="btn-primary mt-6 min-h-14 w-full max-w-xs text-base shadow-[0_16px_40px_rgba(255,196,0,0.28)]"
         >
           <House aria-hidden="true" />

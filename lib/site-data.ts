@@ -14,7 +14,6 @@ import {
   Phone,
   Search,
   ShieldCheck,
-  Star,
   Target,
   Thermometer,
   Timer,
@@ -55,7 +54,7 @@ export const navItems = [
 export const assets = {
   logo: "/assets/brand/logo.png",
   signature: "/assets/brand/assinatura.png",
-  hero: "/assets/real/oficina.jpg",
+  hero: "/assets/real/atendimento.jpg",
   store: "/assets/real/loja.jpg",
   serviceDesk: "/assets/real/atendimento.jpg",
   front: "/assets/real/fachada.jpg",
@@ -164,7 +163,95 @@ export const services = [
   },
 ];
 
-export const serviceOptions = services.map(({ id, title, icon }) => ({ id, label: title, icon }));
+export const serviceCategories = [
+  {
+    id: "oleos-fluidos",
+    serviceId: "oleo-motor",
+    icon: Droplets,
+    title: "Óleos e fluidos",
+    desc: "Aplicação correta, equipamentos específicos e fluidos compatíveis com cada veículo.",
+    img: assets.oilChange,
+    items: [
+      "Óleo de motor",
+      "Óleo de câmbio automático com máquina especializada",
+      "Óleo de câmbio manual",
+      "Fluido de freio",
+      "Fluido de direção hidráulica",
+    ],
+  },
+  {
+    id: "mecanica",
+    serviceId: "mecanica",
+    icon: Wrench,
+    title: "Mecânica preventiva e corretiva",
+    desc: "Inspeção técnica, orientação clara e reparos para preservar segurança e confiabilidade.",
+    img: assets.brakes,
+    items: [
+      "Troca de correia dentada",
+      "Freios",
+      "Suspensão",
+      "Arrefecimento",
+      "Revisão preventiva",
+      "Manutenção corretiva",
+    ],
+  },
+  {
+    id: "diagnostico-injecao",
+    serviceId: "diagnostico",
+    icon: Cpu,
+    title: "Diagnóstico e injeção eletrônica",
+    desc: "Scanner automotivo e avaliação criteriosa antes de indicar qualquer intervenção.",
+    img: assets.diagnostic,
+    items: ["Diagnóstico eletrônico", "Injeção eletrônica", "Limpeza de bicos"],
+  },
+  {
+    id: "eletrica",
+    serviceId: "eletrica",
+    icon: Zap,
+    title: "Elétrica automotiva completa",
+    desc: "Diagnóstico e instalação elétrica para sistemas essenciais e acessórios do veículo.",
+    items: [
+      "Motor de partida e alternador",
+      "Troca de lâmpadas",
+      "Instalação de som, travas e alarmes",
+      "Instalação de buzinas a ar",
+    ],
+  },
+  {
+    id: "rodas-climatizacao",
+    serviceId: "alinhamento",
+    icon: Gauge,
+    title: "Pneus e climatização",
+    desc: "Serviços para rodagem segura, conforto e qualidade do ar dentro do veículo.",
+    img: assets.alignment,
+    items: [
+      "Alinhamento",
+      "Balanceamento",
+      "Alinhamento grátis para pneus comprados no Tenda",
+      "Limpeza e higienização de ar-condicionado",
+    ],
+  },
+];
+
+export const serviceOptions = [
+  { id: "oleo-motor", label: "Óleo de motor", icon: Droplets },
+  { id: "cambio-automatico", label: "Câmbio automático com máquina", icon: Cog },
+  { id: "cambio-manual", label: "Óleo de câmbio manual", icon: Cog },
+  { id: "fluidos", label: "Fluidos de freio ou direção", icon: Droplets },
+  { id: "diagnostico", label: "Diagnóstico eletrônico", icon: Cpu },
+  { id: "injecao", label: "Injeção eletrônica e limpeza de bicos", icon: Zap },
+  { id: "mecanica", label: "Mecânica geral", icon: Wrench },
+  { id: "correia", label: "Troca de correia dentada", icon: Cog },
+  { id: "freios", label: "Freios", icon: CircleDot },
+  { id: "suspensao", label: "Suspensão", icon: Waves },
+  { id: "arrefecimento", label: "Arrefecimento", icon: Thermometer },
+  { id: "eletrica", label: "Elétrica automotiva", icon: BatteryCharging },
+  { id: "partida-alternador", label: "Motor de partida ou alternador", icon: BatteryCharging },
+  { id: "acessorios", label: "Som, travas, alarmes ou buzina a ar", icon: Zap },
+  { id: "alinhamento", label: "Alinhamento", icon: Gauge },
+  { id: "balanceamento", label: "Balanceamento", icon: Target },
+  { id: "ar-condicionado", label: "Higienização de ar-condicionado", icon: Filter },
+];
 
 export const differentials = [
   { icon: Cpu, title: "Equipamentos modernos" },
@@ -186,10 +273,10 @@ export const trustItems = [
 ];
 
 export const stats = [
-  { value: "+10k", label: "serviços realizados" },
-  { value: "4.9", label: "avaliação média" },
-  { value: "100%", label: "foco em garantia" },
   { value: "15+", label: "soluções automotivas" },
+  { value: "08h–18h", label: "segunda a sexta" },
+  { value: "Leves", label: "nacionais e importados" },
+  { value: "1 oficina", label: "atendimento em Itapetininga" },
 ];
 
 export const brands = [
@@ -283,24 +370,6 @@ export const gallery = [
   { src: assets.diagnostic, alt: "Diagnóstico eletrônico automotivo", label: "Diagnóstico eletrônico", span: "md:col-span-2" },
 ];
 
-export const reviews = [
-  {
-    name: "Carlos Mendes",
-    role: "Proprietário BMW 320i",
-    text: "Atendimento impecável. Fizeram a troca do óleo do câmbio automático com máquina e o carro ficou muito mais suave.",
-  },
-  {
-    name: "Juliana Freitas",
-    role: "Proprietária Jeep Compass",
-    text: "Ambiente organizado e profissionais que explicam tudo com clareza. Confio meu carro na Lubri Express.",
-  },
-  {
-    name: "Rafael Andrade",
-    role: "Proprietário Toyota Corolla",
-    text: "Diagnóstico preciso, atendimento rápido e preço honesto. Já indiquei para amigos.",
-  },
-];
-
 export const faqs = [
   {
     q: "Quando devo trocar o óleo do motor?",
@@ -308,7 +377,7 @@ export const faqs = [
   },
   {
     q: "Quando trocar o óleo do câmbio automático?",
-    a: "Em muitos veículos a troca preventiva fica entre 40.000 e 60.000 km. A Lubri Express avalia o modelo e usa máquina especializada quando indicado.",
+    a: "O intervalo depende do fabricante, do fluido e das condições de uso. A Lubri Express confere a especificação do veículo e utiliza máquina especializada quando o procedimento é indicado.",
   },
   {
     q: "Vocês atendem veículos nacionais e importados?",
@@ -364,5 +433,3 @@ export const heroHighlights = [
   { icon: Phone, label: company.phoneDisplay },
   { icon: ShieldCheck, label: "Revisão e diagnóstico" },
 ];
-
-export const ratingStars = [Star, Star, Star, Star, Star];

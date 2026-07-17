@@ -1,4 +1,5 @@
 import { company } from "@/lib/site-data";
+import type { SiteSettings } from "@/lib/site-settings-types";
 
 export const seoServices = [
   "Troca de Óleo e Fluidos: Óleo de motor, óleo de câmbio automático (com máquina especializada), óleo de câmbio manual, fluido de freio e fluido de direção hidráulica.",
@@ -8,21 +9,21 @@ export const seoServices = [
   "Climatização: Limpeza e higienização de ar-condicionado automotivo.",
 ];
 
-export function autoRepairSchema() {
+export function autoRepairSchema(settings: SiteSettings) {
   return {
     "@context": "https://schema.org",
     "@type": "AutoRepair",
     "@id": `${company.siteUrl}/#auto-repair`,
-    name: "Lubri Express Auto Center",
+    name: settings.tradeName,
     description:
       "Mecânica geral, elétrica automotiva e troca de fluidos/óleos para veículos leves em Itapetininga - SP.",
     image: `${company.siteUrl}/assets/real/fachada.jpg`,
     url: company.siteUrl,
-    telephone: "(15) 99196-4535",
+    telephone: settings.phoneDisplay,
     address: {
       "@type": "PostalAddress",
-      streetAddress: "[Rua e número]",
-      addressLocality: "Itapetininga",
+      streetAddress: settings.address,
+      addressLocality: settings.city.replace(/\s*-\s*SP$/i, ""),
       addressRegion: "SP",
       addressCountry: "BR",
     },
@@ -58,6 +59,6 @@ export function autoRepairSchema() {
         closes: "18:00",
       },
     ],
-    sameAs: [company.instagram, company.facebook],
+    sameAs: [settings.instagram, settings.facebook].filter(Boolean),
   };
 }

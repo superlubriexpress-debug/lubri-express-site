@@ -19,11 +19,11 @@ export function BrandsSection({ display = "names" }: BrandsSectionProps) {
         <div>
           <Badge>Marcas e linhas</Badge>
           <h2 className="mt-5 max-w-3xl font-display text-3xl font-bold leading-tight text-white md:text-5xl">
-            Produtos reconhecidos, aplicados com criterio.
+            Produtos reconhecidos, aplicados com critério.
           </h2>
         </div>
         <p className="max-w-xl text-base leading-8 text-neutral-300 md:text-right">
-          Trabalhamos com linhas reconhecidas no mercado automotivo, respeitando a especificacao de cada veiculo.
+          Trabalhamos com linhas reconhecidas no mercado automotivo, respeitando a especificação de cada veículo.
         </p>
       </div>
 
@@ -33,7 +33,7 @@ export function BrandsSection({ display = "names" }: BrandsSectionProps) {
         <div className="relative mt-12" aria-hidden="true">
           <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-ink to-transparent md:w-36" />
           <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-ink to-transparent md:w-36" />
-          <div className="flex animate-marquee items-center gap-4 whitespace-nowrap py-3 hover:[animation-play-state:paused]">
+          <div className="flex animate-marquee items-center gap-4 whitespace-nowrap py-3 hover:[animation-play-state:paused] motion-reduce:animate-none">
             {logoLoop.map((brand, index) => {
               const isMotul = brand.name === "Motul";
 

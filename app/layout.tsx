@@ -5,6 +5,7 @@ import Script from "next/script";
 import "./globals.css";
 import { company } from "@/lib/site-data";
 import { autoRepairSchema } from "@/lib/schema";
+import { getPublicSiteSettings } from "@/lib/site-settings";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -57,7 +58,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/assets/real/fachada.jpg",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
         alt: "Fachada da Lubri Express Auto Center em Itapetininga",
@@ -69,7 +70,7 @@ export const metadata: Metadata = {
     title: seoTitle,
     description:
       "Mecânica, elétrica automotiva, troca de óleo, câmbio automático com máquina e parceria de alinhamento grátis com o Tenda em Itapetininga.",
-    images: ["/assets/real/fachada.jpg"],
+    images: ["/opengraph-image"],
   },
   robots: {
     index: true,
@@ -99,7 +100,9 @@ export const viewport: Viewport = {
   themeColor: "#111111",
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const settings = await getPublicSiteSettings();
+
   return (
     <html lang="pt-BR" className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <body>
@@ -111,7 +114,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           id="lubri-express-auto-repair-schema"
           type="application/ld+json"
           strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(autoRepairSchema()) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(autoRepairSchema(settings)) }}
         />
       </body>
     </html>
