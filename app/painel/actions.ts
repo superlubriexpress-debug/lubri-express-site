@@ -12,7 +12,7 @@ import {
   toDatabaseSettings,
 } from "@/lib/site-settings";
 import type { SiteSettings } from "@/lib/site-settings-types";
-import { clearAdminSession, getCurrentAdmin } from "@/lib/supabase-auth";
+import { clearAdminSession, getCurrentAdmin, refreshAdminSession } from "@/lib/supabase-auth";
 
 const value = (formData: FormData, key: string, maxLength: number) =>
   String(formData.get(key) ?? "").trim().slice(0, maxLength);
@@ -28,7 +28,7 @@ const safeUrl = (raw: string, fallback: string) => {
 };
 
 export async function updateSiteSettings(formData: FormData) {
-  const admin = await getCurrentAdmin();
+  const admin = (await getCurrentAdmin()) ?? (await refreshAdminSession());
   if (!admin) redirect("/login?next=/painel");
   if (!isSupabaseConfigured()) redirect("/painel?error=backend");
 
@@ -82,7 +82,7 @@ export async function logoutAction() {
 }
 
 export async function updateAdminProfile(formData: FormData) {
-  const admin = await getCurrentAdmin();
+  const admin = (await getCurrentAdmin()) ?? (await refreshAdminSession());
   if (!admin) redirect("/login?next=/painel/administrador");
 
   const fullName = value(formData, "fullName", 100);
@@ -106,7 +106,7 @@ export async function updateAdminProfile(formData: FormData) {
 }
 
 export async function changeAdminPassword(formData: FormData) {
-  const admin = await getCurrentAdmin();
+  const admin = (await getCurrentAdmin()) ?? (await refreshAdminSession());
   if (!admin) redirect("/login?next=/painel/administrador");
 
   const password = String(formData.get("password") ?? "");

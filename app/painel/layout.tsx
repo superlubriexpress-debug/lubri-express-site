@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 
 import { logoutAction } from "@/app/painel/actions";
 import { assets } from "@/lib/site-data";
-import { getCurrentAdmin } from "@/lib/supabase-auth";
+import { getCurrentAdmin, hasRefreshSession } from "@/lib/supabase-auth";
 
 export const metadata: Metadata = {
   title: "Painel administrativo",
@@ -15,7 +15,10 @@ export const metadata: Metadata = {
 
 export default async function PanelLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const admin = await getCurrentAdmin();
-  if (!admin) redirect("/login?next=/painel");
+  if (!admin) {
+    if (await hasRefreshSession()) redirect("/auth/refresh?next=/painel");
+    redirect("/login?next=/painel");
+  }
 
   return (
     <div className="min-h-svh bg-neutral-100 text-ink">

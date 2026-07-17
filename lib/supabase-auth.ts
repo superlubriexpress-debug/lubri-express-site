@@ -40,14 +40,44 @@ export async function loginWithPassword(email: string, password: string) {
 
   if (!admin) throw new Error("Este usuário não possui acesso ao painel.");
 
-  const cookieStore = await cookies();
-  const secure = process.env.NODE_ENV === "production";
-  const baseOptions = { httpOnly: true, secure, sameSite: "lax" as const, path: "/" };
-
-  cookieStore.set(ACCESS_COOKIE, auth.access_token, { ...baseOptions, maxAge: auth.expires_in });
-  cookieStore.set(REFRESH_COOKIE, auth.refresh_token, { ...baseOptions, maxAge: 60 * 60 * 24 * 30 });
+  await storeAuthCookies(auth);
 
   return admin;
+}
+
+export async function hasRefreshSession() {
+  return Boolean((await cookies()).get(REFRESH_COOKIE)?.value);
+}
+
+export async function refreshAdminSession(): Promise<AdminUser | null> {
+  if (!isSupabaseConfigured()) return null;
+
+  const refreshToken = (await cookies()).get(REFRESH_COOKIE)?.value;
+  if (!refreshToken) return null;
+
+  const { url, anonKey } = getSupabaseConfig();
+  const response = await fetch(`${url}/auth/v1/token?grant_type=refresh_token`, {
+    method: "POST",
+    headers: { apikey: anonKey, "Content-Type": "application/json" },
+    body: JSON.stringify({ refresh_token: refreshToken }),
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    await clearAdminSession();
+    return null;
+  }
+
+  const auth = (await response.json()) as AuthResponse;
+  const profile = await getAdminProfile(auth.user.id, auth.access_token);
+
+  if (!profile) {
+    await clearAdminSession();
+    return null;
+  }
+
+  await storeAuthCookies(auth);
+  return { ...profile, email: auth.user.email ?? "", accessToken: auth.access_token };
 }
 
 export async function getCurrentAdmin(): Promise<AdminUser | null> {
@@ -76,6 +106,15 @@ export async function clearAdminSession() {
   const cookieStore = await cookies();
   cookieStore.delete(ACCESS_COOKIE);
   cookieStore.delete(REFRESH_COOKIE);
+}
+
+async function storeAuthCookies(auth: AuthResponse) {
+  const cookieStore = await cookies();
+  const secure = process.env.NODE_ENV === "production";
+  const baseOptions = { httpOnly: true, secure, sameSite: "lax" as const, path: "/" };
+
+  cookieStore.set(ACCESS_COOKIE, auth.access_token, { ...baseOptions, maxAge: auth.expires_in });
+  cookieStore.set(REFRESH_COOKIE, auth.refresh_token, { ...baseOptions, maxAge: 60 * 60 * 24 * 30 });
 }
 
 async function getAdminProfile(userId: string, accessToken: string): Promise<Omit<AdminUser, "email" | "accessToken"> | null> {

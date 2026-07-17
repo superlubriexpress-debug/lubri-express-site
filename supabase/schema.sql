@@ -31,6 +31,22 @@ create table if not exists public.site_settings (
 alter table public.profiles enable row level security;
 alter table public.site_settings enable row level security;
 
+revoke all on public.profiles from anon;
+revoke insert, update, delete on public.profiles from authenticated;
+grant select on public.profiles to authenticated;
+grant update (full_name) on public.profiles to authenticated;
+
+revoke insert, update, delete on public.site_settings from anon;
+revoke delete on public.site_settings from authenticated;
+grant select on public.site_settings to anon, authenticated;
+grant insert, update on public.site_settings to authenticated;
+
+drop policy if exists "profiles_select_own" on public.profiles;
+drop policy if exists "profiles_update_own" on public.profiles;
+drop policy if exists "settings_public_read" on public.site_settings;
+drop policy if exists "settings_admin_insert" on public.site_settings;
+drop policy if exists "settings_admin_update" on public.site_settings;
+
 create policy "profiles_select_own"
 on public.profiles for select
 to authenticated
