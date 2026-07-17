@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, LockKeyhole } from "lucide-react";
+import { ArrowLeft, LockKeyhole, ShieldCheck } from "lucide-react";
 import { redirect } from "next/navigation";
 
 import { loginAction } from "@/app/login/actions";
@@ -26,19 +26,22 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
   const next = params.next?.startsWith("/") && !params.next.startsWith("//") ? params.next : "/painel";
 
   return (
-    <main id="conteudo" className="grid min-h-svh place-items-center bg-[#080808] px-5 py-12 text-white">
+    <main id="conteudo" className="grid min-h-svh place-items-center bg-[#070707] px-5 py-12 text-white">
       <section className="w-full max-w-md rounded-xl border border-white/10 bg-[#111111] p-6 shadow-2xl sm:p-8">
         <div className="flex items-center gap-4 border-b border-white/10 pb-6">
           <Image src={assets.logo} alt="" width={56} height={56} className="h-14 w-14 object-contain" priority />
           <div>
-            <p className="font-display text-xl font-bold">Área administrativa</p>
-            <p className="mt-1 text-sm text-neutral-400">Lubri Express Auto Center</p>
+            <p className="font-display text-xl font-black leading-tight">Painel administrativo</p>
+            <p className="mt-1 text-sm font-medium text-neutral-400">Lubri Express Auto Center</p>
           </div>
         </div>
 
-        <div className="mt-7 flex items-start gap-3 rounded-lg bg-accent/10 p-4 text-sm leading-6 text-neutral-300">
+        <div className="mt-7 flex items-start gap-3 rounded-lg border border-accent/15 bg-accent/10 p-4 text-sm leading-6 text-neutral-200">
           <LockKeyhole className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
-          Acesso exclusivo para pessoas autorizadas.
+          <div>
+            <strong className="block text-white">Acesso restrito</strong>
+            <span className="text-neutral-300">Entre somente com usuário autorizado pela administração.</span>
+          </div>
         </div>
 
         {!isSupabaseConfigured() && (
@@ -76,6 +79,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
             />
           </label>
           <button type="submit" className="btn-primary min-h-12 w-full">
+            <ShieldCheck className="h-4 w-4" />
             Entrar com segurança
           </button>
         </form>
