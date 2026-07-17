@@ -36,7 +36,7 @@ export const company = {
   phoneHref: "5515991964535",
   address: "Rua Quintino Bocaiuva, 318 - Centro, Itapetininga - SP",
   city: "Itapetininga - SP",
-  hours: "Seg a Sex, 08:00 às 18:00",
+  hours: "Seg a Sex: 08:00 às 18:00 | Sábado: 08:00 às 13:00 | Domingo: fechado",
   mapsUrl: "https://maps.app.goo.gl/LcuwnvZdwe3rb6ts5",
   instagram: "https://www.instagram.com/lubriexpress2/",
   facebook: "https://www.facebook.com/LubriExpress2/",

@@ -7,8 +7,9 @@ import { assets } from "@/lib/site-data";
 import type { SiteSettings } from "@/lib/site-settings-types";
 
 export function HeroSection({ settings }: { settings: SiteSettings }) {
+  const hoursLabel = settings.hoursText.replace(/\s*\|\s*/g, "\n");
   const highlights = [
-    { icon: Timer, label: settings.hoursText },
+    { icon: Timer, label: hoursLabel },
     { icon: Phone, label: settings.phoneDisplay },
     { icon: ShieldCheck, label: "Revisão e diagnóstico" },
   ];
@@ -55,7 +56,7 @@ export function HeroSection({ settings }: { settings: SiteSettings }) {
                   <span className="grid h-10 w-10 place-items-center rounded-lg bg-accent text-ink">
                     <Icon className="h-5 w-5" />
                   </span>
-                  <p className="min-w-0 break-words text-sm font-bold leading-5 text-white">{item.label}</p>
+                  <p className="min-w-0 whitespace-pre-line break-words text-sm font-bold leading-5 text-white">{item.label}</p>
                 </div>
               );
             })}

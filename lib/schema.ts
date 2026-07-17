@@ -58,6 +58,12 @@ export function autoRepairSchema(settings: SiteSettings) {
         opens: "08:00",
         closes: "18:00",
       },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: "Saturday",
+        opens: "08:00",
+        closes: "13:00",
+      },
     ],
     sameAs: [settings.instagram, settings.facebook].filter(Boolean),
   };

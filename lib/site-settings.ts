@@ -55,6 +55,8 @@ export const getSupabaseConfig = () => ({
   anonKey: cleanHeaderValue(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY),
 });
 
+export const getSupabaseServiceRoleKey = () => cleanHeaderValue(process.env.SUPABASE_SERVICE_ROLE_KEY);
+
 const mergeSettings = (row?: SiteSettingsRow): SiteSettings => ({
   tradeName: row?.trade_name || defaultSiteSettings.tradeName,
   legalName: row?.legal_name || "",

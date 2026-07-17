@@ -7,6 +7,7 @@ import type { SiteSettings } from "@/lib/site-settings-types";
 
 export function MapSection({ settings }: { settings: SiteSettings }) {
   const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(settings.address)}&t=k&z=17&output=embed`;
+  const hoursLabel = settings.hoursText.replace(/\s*\|\s*/g, "\n");
 
   return (
     <section id="contato" className="relative border-t-4 border-accent bg-ink">
@@ -28,9 +29,9 @@ export function MapSection({ settings }: { settings: SiteSettings }) {
             <p className="mt-3 text-lg font-bold text-neutral-300">{settings.address}</p>
 
             <div className="mt-7 grid gap-4">
-              <p className="flex items-center gap-3 font-bold">
+              <p className="flex items-start gap-3 whitespace-pre-line font-bold">
                 <Clock className="h-5 w-5 text-accent" />
-                {settings.hoursText}
+                {hoursLabel}
               </p>
               <p className="flex items-center gap-3 font-bold">
                 <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-accent">

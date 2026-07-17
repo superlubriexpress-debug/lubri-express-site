@@ -6,6 +6,7 @@ import { assets, company, navItems } from "@/lib/site-data";
 import type { SiteSettings } from "@/lib/site-settings-types";
 
 export function Footer({ settings }: { settings: SiteSettings }) {
+  const hoursLines = settings.hoursText.split("|").map((line) => line.trim()).filter(Boolean);
   const socialLinks = [
     {
       label: "Instagram",
@@ -28,36 +29,36 @@ export function Footer({ settings }: { settings: SiteSettings }) {
   ];
 
   return (
-    <footer id="rodape" className="relative border-t border-accent/30 bg-[#080808] text-white">
+    <footer id="rodape" className="relative border-t border-accent/30 bg-[#070707] text-white">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent" />
 
       <div className="container-x py-14 sm:py-16">
-        <div className="grid gap-10 border-b border-white/10 pb-12 md:grid-cols-2 xl:grid-cols-[1.25fr_0.7fr_0.9fr_1.15fr] xl:gap-12">
+        <div className="grid gap-10 border-b border-white/10 pb-12 md:grid-cols-2 xl:grid-cols-[1.2fr_0.65fr_0.95fr_1.15fr] xl:gap-12">
           <div>
             <div className="flex items-center gap-4">
               <Image src={assets.logo} alt="" width={56} height={56} className="h-12 w-12 object-contain" />
               <div>
-                <h2 className="font-display text-xl font-bold">{settings.tradeName}</h2>
-                <p className="mt-1 text-xs font-black uppercase tracking-normal text-accent">{settings.city}</p>
+                <h2 className="font-display text-xl font-black leading-tight">{settings.tradeName}</h2>
+                <p className="mt-1 text-xs font-black uppercase tracking-[0.08em] text-accent">{settings.city}</p>
               </div>
             </div>
-            <p className="mt-5 max-w-md text-sm leading-7 text-neutral-400">{company.tagline}</p>
+            <p className="mt-5 max-w-md text-[15px] leading-7 text-neutral-300">{company.tagline}</p>
             <a
               href={settings.mapsUrl}
               target="_blank"
               rel="noreferrer"
-              className="mt-5 inline-flex max-w-md items-start gap-3 text-sm leading-6 text-neutral-400 transition hover:text-white"
+              className="mt-5 inline-flex max-w-md items-start gap-3 text-[15px] font-medium leading-7 text-neutral-300 transition hover:text-white"
             >
-              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+              <MapPin className="mt-1 h-4 w-4 shrink-0 text-accent" />
               {settings.address}
             </a>
           </div>
 
           <nav aria-label="Links do rodapé">
-            <h3 className="font-display text-sm font-bold uppercase tracking-normal text-neutral-500">Navegação</h3>
-            <div className="mt-5 grid gap-3">
+            <h3 className="font-display text-xs font-black uppercase tracking-[0.18em] text-neutral-500">Navegação</h3>
+            <div className="mt-5 grid gap-3.5">
               {navItems.map((item) => (
-                <a key={item.href} href={item.href} className="w-fit text-sm font-semibold text-neutral-300 transition hover:translate-x-1 hover:text-accent">
+                <a key={item.href} href={item.href} className="w-fit text-[15px] font-bold leading-6 text-neutral-200 transition hover:translate-x-1 hover:text-accent">
                   {item.label}
                 </a>
               ))}
@@ -65,15 +66,17 @@ export function Footer({ settings }: { settings: SiteSettings }) {
           </nav>
 
           <div>
-            <h3 className="font-display text-sm font-bold uppercase tracking-normal text-neutral-500">Atendimento</h3>
+            <h3 className="font-display text-xs font-black uppercase tracking-[0.18em] text-neutral-500">Atendimento</h3>
             <div className="mt-5 grid gap-4">
-              <p className="flex items-start gap-3 text-sm font-semibold leading-6 text-neutral-300">
-                <Clock3 className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-                {settings.hoursText}
-              </p>
+              <div className="flex items-start gap-3 text-[15px] font-semibold leading-7 text-neutral-200">
+                <Clock3 className="mt-1 h-4 w-4 shrink-0 text-accent" />
+                <div className="grid gap-1">
+                  {hoursLines.length ? hoursLines.map((line) => <span key={line}>{line}</span>) : <span>{settings.hoursText}</span>}
+                </div>
+              </div>
               <a
                 href={`tel:+${settings.phoneHref}`}
-                className="flex items-center gap-3 text-sm font-semibold text-neutral-300 transition hover:text-white"
+                className="flex items-center gap-3 text-[15px] font-black text-neutral-100 transition hover:text-white"
               >
                 <Phone className="h-4 w-4 shrink-0 text-accent" />
                 {settings.phoneDisplay}
@@ -82,8 +85,8 @@ export function Footer({ settings }: { settings: SiteSettings }) {
           </div>
 
           <div>
-            <h3 className="font-display text-sm font-bold uppercase tracking-normal text-neutral-500">Fale com a equipe</h3>
-            <p className="mt-5 text-sm leading-6 text-neutral-400">Envie os dados do veículo e receba orientação para o próximo passo.</p>
+            <h3 className="font-display text-xs font-black uppercase tracking-[0.18em] text-neutral-500">Fale com a equipe</h3>
+            <p className="mt-5 text-[15px] leading-7 text-neutral-300">Envie os dados do veículo e receba orientação para o próximo passo.</p>
             <a
               href={`https://wa.me/${settings.whatsappHref}`}
               target="_blank"
@@ -121,7 +124,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
           </div>
         </div>
 
-        <div className="flex flex-col gap-5 pt-7 text-xs text-neutral-500 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-5 pt-7 text-xs font-medium text-neutral-500 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p>{settings.tradeName} © 2026. Todos os direitos reservados.</p>
             {(settings.legalName || settings.cnpj) && (
@@ -131,7 +134,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
             )}
           </div>
           <div className="flex items-center gap-2.5">
-            <span className="text-[9px] font-black uppercase tracking-normal text-neutral-500">Desenvolvido por</span>
+            <span className="text-[9px] font-black uppercase tracking-[0.16em] text-neutral-500">Desenvolvido por</span>
             <Image src={assets.signature} alt="Gean Maikon" width={112} height={19} className="h-5 w-auto max-w-[112px] object-contain opacity-85" />
           </div>
         </div>

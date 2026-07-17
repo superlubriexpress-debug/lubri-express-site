@@ -104,7 +104,7 @@ insert into public.site_settings (
   '5515991964535',
   'Rua Quintino Bocaiuva, 318 - Centro, Itapetininga - SP',
   'Itapetininga - SP',
-  'Seg a Sex, 08:00 às 18:00',
+  'Seg a Sex: 08:00 às 18:00 | Sábado: 08:00 às 13:00 | Domingo: fechado',
   'https://maps.app.goo.gl/LcuwnvZdwe3rb6ts5',
   'https://www.instagram.com/lubriexpress2/',
   'https://www.facebook.com/LubriExpress2/'
