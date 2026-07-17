@@ -45,14 +45,14 @@ type SiteSettingsRow = {
   maintenance_notice?: string | null;
 };
 
-const cleanEnvValue = (value?: string) => value?.replace(/^\uFEFF/, "").trim() ?? "";
+export const cleanHeaderValue = (value?: string) => value?.replace(/[^\x21-\x7E]/g, "").trim() ?? "";
 
 export const isSupabaseConfigured = () =>
-  Boolean(cleanEnvValue(process.env.NEXT_PUBLIC_SUPABASE_URL) && cleanEnvValue(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY));
+  Boolean(cleanHeaderValue(process.env.NEXT_PUBLIC_SUPABASE_URL) && cleanHeaderValue(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY));
 
 export const getSupabaseConfig = () => ({
-  url: cleanEnvValue(process.env.NEXT_PUBLIC_SUPABASE_URL).replace(/\/$/, ""),
-  anonKey: cleanEnvValue(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY),
+  url: cleanHeaderValue(process.env.NEXT_PUBLIC_SUPABASE_URL).replace(/\/$/, ""),
+  anonKey: cleanHeaderValue(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY),
 });
 
 const mergeSettings = (row?: SiteSettingsRow): SiteSettings => ({

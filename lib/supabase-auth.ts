@@ -2,7 +2,7 @@ import "server-only";
 
 import { cookies } from "next/headers";
 
-import { getSupabaseConfig, isSupabaseConfigured } from "@/lib/site-settings";
+import { cleanHeaderValue, getSupabaseConfig, isSupabaseConfigured } from "@/lib/site-settings";
 
 export const ACCESS_COOKIE = "lubri_admin_access";
 export const REFRESH_COOKIE = "lubri_admin_refresh";
@@ -113,8 +113,8 @@ async function storeAuthCookies(auth: AuthResponse) {
   const secure = process.env.NODE_ENV === "production";
   const baseOptions = { httpOnly: true, secure, sameSite: "lax" as const, path: "/" };
 
-  cookieStore.set(ACCESS_COOKIE, auth.access_token, { ...baseOptions, maxAge: auth.expires_in });
-  cookieStore.set(REFRESH_COOKIE, auth.refresh_token, { ...baseOptions, maxAge: 60 * 60 * 24 * 30 });
+  cookieStore.set(ACCESS_COOKIE, cleanHeaderValue(auth.access_token), { ...baseOptions, maxAge: auth.expires_in });
+  cookieStore.set(REFRESH_COOKIE, cleanHeaderValue(auth.refresh_token), { ...baseOptions, maxAge: 60 * 60 * 24 * 30 });
 }
 
 async function getAdminProfile(userId: string, accessToken: string): Promise<Omit<AdminUser, "email" | "accessToken"> | null> {
