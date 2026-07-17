@@ -72,7 +72,7 @@ export function Navbar({ settings }: { settings: SiteSettings }) {
             </SheetContent>
           </Sheet>
 
-          <a href="#inicio" className="flex items-center gap-3">
+          <a href="/" className="flex items-center gap-3">
             <Image src={assets.logo} alt="Lubri Express Auto Center" width={48} height={48} priority className="h-11 w-11 object-contain" />
             <div className="leading-tight">
               <div className="font-display text-base font-bold text-white sm:text-lg">Lubri Express</div>

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight, Clock3, MapPin, Phone } from "lucide-react";
 
 import { FacebookIcon, InstagramIcon, WhatsAppIcon } from "@/components/icons";
@@ -127,6 +128,15 @@ export function Footer({ settings }: { settings: SiteSettings }) {
         <div className="flex flex-col gap-5 pt-7 text-xs font-medium text-neutral-500 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p>{settings.tradeName} © 2026. Todos os direitos reservados.</p>
+            <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1">
+              <Link href="/politica-de-privacidade" className="transition hover:text-accent">
+                Política de Privacidade
+              </Link>
+              <span className="text-neutral-700">•</span>
+              <Link href="/termos-de-uso" className="transition hover:text-accent">
+                Termos de Uso
+              </Link>
+            </div>
             {(settings.legalName || settings.cnpj) && (
               <p className="mt-1 text-[11px] text-neutral-600">
                 {[settings.legalName, settings.cnpj ? `CNPJ ${settings.cnpj}` : ""].filter(Boolean).join(" · ")}

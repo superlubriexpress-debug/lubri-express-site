@@ -44,11 +44,11 @@ export const company = {
 };
 
 export const navItems = [
-  { label: "Serviços", href: "#servicos" },
-  { label: "Como funciona", href: "#como-funciona" },
-  { label: "Oficina", href: "#oficina" },
-  { label: "Orçamento", href: "#orcamento" },
-  { label: "Contato", href: "#contato" },
+  { label: "Serviços", href: "/#servicos" },
+  { label: "Como funciona", href: "/#como-funciona" },
+  { label: "Oficina", href: "/#oficina" },
+  { label: "Orçamento", href: "/#orcamento" },
+  { label: "Contato", href: "/#contato" },
 ];
 
 export const assets = {

@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
 
 import "./globals.css";
+import { SourceShortcutGuard } from "@/components/security/source-shortcut-guard";
 import { company } from "@/lib/site-data";
 import { autoRepairSchema } from "@/lib/schema";
 import { getPublicSiteSettings } from "@/lib/site-settings";
@@ -106,6 +107,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   return (
     <html lang="pt-BR" className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <body>
+        <SourceShortcutGuard />
         <a href="#conteudo" className="skip-link">
           Pular para o conteúdo
         </a>
