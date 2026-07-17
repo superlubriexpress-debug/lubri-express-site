@@ -1,14 +1,10 @@
 import { ImageResponse } from "next/og";
 
-import { company } from "@/lib/site-data";
-
 export const alt = "Lubri Express Auto Center em Itapetininga";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default function OpenGraphImage() {
-  const assetBaseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : company.siteUrl;
-
   return new ImageResponse(
     (
       <div
@@ -23,26 +19,45 @@ export default function OpenGraphImage() {
           fontFamily: "Arial, sans-serif",
         }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={`${assetBaseUrl}/assets/real/fachada.jpg`}
-          alt=""
-          width="1200"
-          height="630"
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
-        />
         <div
           style={{
             position: "absolute",
             inset: 0,
             display: "flex",
-            background: "linear-gradient(90deg, rgba(0,0,0,.96) 0%, rgba(0,0,0,.82) 48%, rgba(0,0,0,.18) 100%)",
+            background: "linear-gradient(135deg, #050505 0%, #111111 46%, #ffc400 46%, #ffc400 50%, #151515 50%, #050505 100%)",
           }}
         />
-        <div style={{ position: "relative", display: "flex", flexDirection: "column", justifyContent: "center", width: 700, padding: "64px 72px" }}>
+        <div
+          style={{
+            position: "absolute",
+            right: 90,
+            top: 110,
+            display: "flex",
+            width: 300,
+            height: 300,
+            border: "18px solid #ffc400",
+            borderRadius: 999,
+            opacity: 0.9,
+          }}
+        />
+        <div style={{ position: "relative", display: "flex", flexDirection: "column", justifyContent: "center", width: 760, padding: "64px 72px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`${assetBaseUrl}/assets/brand/logo.png`} alt="" width="86" height="86" style={{ objectFit: "contain" }} />
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: 86,
+                height: 86,
+                borderRadius: 999,
+                background: "#ffc400",
+                color: "#111111",
+                fontSize: 22,
+                fontWeight: 900,
+              }}
+            >
+              L
+            </div>
             <div style={{ display: "flex", flexDirection: "column" }}>
               <strong style={{ fontSize: 34, lineHeight: 1 }}>Lubri Express</strong>
               <span style={{ marginTop: 8, color: "#ffc400", fontSize: 18, fontWeight: 800, textTransform: "uppercase" }}>Auto Center</span>
