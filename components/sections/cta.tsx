@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useId, useMemo, useState } from "react";
-import { Check, ChevronLeft, ChevronRight, Send } from "lucide-react";
+import { Check, CheckCircle2, ChevronLeft, ChevronRight, Loader2, Send } from "lucide-react";
 
 import { BOOKING_EVENT } from "@/components/booking/booking-events";
 import { WhatsAppIcon } from "@/components/icons";
@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { serviceOptions } from "@/lib/site-data";
 import type { SiteSettings } from "@/lib/site-settings-types";
+import { trackEvent } from "@/lib/analytics";
 
 type QuoteForm = {
   vehicle: string;
@@ -40,9 +41,32 @@ const steps = [
   { number: 3, label: "Contato" },
 ];
 
+const serviceSlugToOption: Record<string, string> = {
+  "troca-de-oleo": "oleo-motor",
+  "cambio-automatico": "cambio-automatico",
+  "revisao-preventiva": "mecanica",
+  freios: "freios",
+  suspensao: "suspensao",
+  "eletrica-automotiva": "eletrica",
+  "ar-condicionado": "ar-condicionado",
+  "alinhamento-balanceamento": "alinhamento",
+};
+
+type FormErrors = Partial<Record<"vehicle" | "year" | "engine" | "services" | "name" | "phone", string>>;
+
+const formatPhone = (value: string) => {
+  const digits = value.replace(/\D/g, "").slice(0, 11);
+  if (digits.length <= 2) return digits;
+  if (digits.length <= 6) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+  if (digits.length <= 10) return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
+  return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
+};
+
 export function CTASection({ settings }: { settings: SiteSettings }) {
   const [step, setStep] = useState(1);
   const [form, setForm] = useState(initialForm);
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "loading" | "success">("idle");
   const symptomsId = useId();
   const periodId = useId();
 
@@ -62,6 +86,13 @@ export function CTASection({ settings }: { settings: SiteSettings }) {
 
     window.addEventListener(BOOKING_EVENT, handleBooking);
     return () => window.removeEventListener(BOOKING_EVENT, handleBooking);
+  }, []);
+
+  useEffect(() => {
+    const requestedService = new URLSearchParams(window.location.search).get("servico");
+    const option = requestedService ? serviceSlugToOption[requestedService] : undefined;
+    if (!option) return;
+    setForm((current) => ({ ...current, services: current.services.includes(option) ? current.services : [...current.services, option] }));
   }, []);
 
   const selectedLabels = useMemo(
@@ -94,12 +125,30 @@ export function CTASection({ settings }: { settings: SiteSettings }) {
     return `https://wa.me/${settings.whatsappHref}?text=${encodeURIComponent(message)}`;
   }, [form, selectedLabels, settings.whatsappHref]);
 
+  const phoneDigits = form.phone.replace(/\D/g, "");
   const canAdvance =
-    (step === 1 && Boolean(form.vehicle.trim())) ||
+    (step === 1 && Boolean(form.vehicle.trim()) && /^\d{4}$/.test(form.year) && Boolean(form.engine.trim())) ||
     (step === 2 && form.services.length > 0) ||
-    (step === 3 && Boolean(form.name.trim()) && Boolean(form.phone.trim()));
+    (step === 3 && Boolean(form.name.trim()) && phoneDigits.length >= 10);
+
+  const validateStep = (stepToValidate: number) => {
+    const nextErrors: FormErrors = {};
+    if (stepToValidate === 1) {
+      if (!form.vehicle.trim()) nextErrors.vehicle = "Informe a marca e o modelo.";
+      if (!/^\d{4}$/.test(form.year)) nextErrors.year = "Informe o ano com quatro dígitos.";
+      if (!form.engine.trim()) nextErrors.engine = "Informe a motorização ou escreva 'não sei'.";
+    }
+    if (stepToValidate === 2 && form.services.length === 0) nextErrors.services = "Selecione pelo menos um serviço.";
+    if (stepToValidate === 3) {
+      if (form.name.trim().length < 2) nextErrors.name = "Informe seu nome.";
+      if (phoneDigits.length < 10) nextErrors.phone = "Informe um telefone com DDD.";
+    }
+    setErrors(nextErrors);
+    return Object.keys(nextErrors).length === 0;
+  };
 
   const toggleService = (serviceId: string) => {
+    setErrors((current) => ({ ...current, services: undefined }));
     setForm((current) => ({
       ...current,
       services: current.services.includes(serviceId)
@@ -111,10 +160,19 @@ export function CTASection({ settings }: { settings: SiteSettings }) {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (!canAdvance) return;
+    if (!validateStep(3)) return;
+
+    setSubmitStatus("loading");
+    trackEvent("quote_submit", { services: selectedLabels.join(", "), vehicle: form.vehicle });
 
     const newWindow = window.open(whatsappUrl, "_blank", "noopener,noreferrer");
     if (!newWindow) window.location.href = whatsappUrl;
+    window.setTimeout(() => setSubmitStatus("success"), 450);
+  };
+
+  const goNext = () => {
+    if (!validateStep(step)) return;
+    setStep((current) => Math.min(3, current + 1));
   };
 
   return (
@@ -142,7 +200,9 @@ export function CTASection({ settings }: { settings: SiteSettings }) {
                 <button
                   key={item.number}
                   type="button"
-                  onClick={() => setStep(item.number)}
+                  onClick={() => {
+                    if (item.number < step || validateStep(step)) setStep(item.number);
+                  }}
                   className="group min-h-11 text-left"
                   aria-current={active ? "step" : undefined}
                   aria-label={`Ir para a etapa ${item.number}: ${item.label}`}
@@ -163,14 +223,17 @@ export function CTASection({ settings }: { settings: SiteSettings }) {
                 <Field
                   label="Marca e modelo do carro *"
                   value={form.vehicle}
-                  onChange={(value) => setForm({ ...form, vehicle: value })}
+                  onChange={(value) => { setForm({ ...form, vehicle: value }); setErrors((current) => ({ ...current, vehicle: undefined })); }}
                   placeholder="Ex: Ford Ka, Corolla, Onix"
                   autoComplete="off"
+                  error={errors.vehicle}
+                  required
                 />
                 <div className="grid gap-4 sm:grid-cols-2">
-                  <Field label="Ano" value={form.year} onChange={(value) => setForm({ ...form, year: value })} placeholder="Ex: 2019" inputMode="numeric" />
-                  <Field label="Motorização" value={form.engine} onChange={(value) => setForm({ ...form, engine: value })} placeholder="Ex: Zetec Rocam 1.0" />
+                  <Field label="Ano *" value={form.year} onChange={(value) => { setForm({ ...form, year: value.replace(/\D/g, "").slice(0, 4) }); setErrors((current) => ({ ...current, year: undefined })); }} placeholder="Ex: 2019" inputMode="numeric" error={errors.year} required />
+                  <Field label="Motorização *" value={form.engine} onChange={(value) => { setForm({ ...form, engine: value }); setErrors((current) => ({ ...current, engine: undefined })); }} placeholder="Ex: Zetec Rocam 1.0" error={errors.engine} required />
                 </div>
+                {errors.vehicle || errors.year || errors.engine ? <p className="text-sm font-semibold text-red-700" role="alert">Revise os campos destacados para continuar.</p> : null}
               </div>
             )}
 
@@ -200,6 +263,7 @@ export function CTASection({ settings }: { settings: SiteSettings }) {
                     );
                   })}
                 </div>
+                {errors.services && <p className="text-sm font-semibold text-red-700" role="alert">{errors.services}</p>}
               </div>
             )}
 
@@ -207,8 +271,8 @@ export function CTASection({ settings }: { settings: SiteSettings }) {
               <div className="grid gap-4">
                 <StepTitle step="Etapa 3" title="Contato e observações" description="Informe como a equipe pode retornar e descreva qualquer sintoma importante." />
                 <div className="grid gap-4 sm:grid-cols-2">
-                  <Field label="Nome *" value={form.name} onChange={(value) => setForm({ ...form, name: value })} placeholder="Seu nome" autoComplete="name" />
-                  <Field label="Telefone / WhatsApp *" value={form.phone} onChange={(value) => setForm({ ...form, phone: value })} placeholder="(15) 99999-9999" inputMode="tel" autoComplete="tel" />
+                  <Field label="Nome *" value={form.name} onChange={(value) => { setForm({ ...form, name: value }); setErrors((current) => ({ ...current, name: undefined })); }} placeholder="Seu nome" autoComplete="name" error={errors.name} required />
+                  <Field label="Telefone / WhatsApp *" value={form.phone} onChange={(value) => { setForm({ ...form, phone: formatPhone(value) }); setErrors((current) => ({ ...current, phone: undefined })); }} placeholder="(15) 99999-9999" inputMode="tel" autoComplete="tel" error={errors.phone} required />
                   <Field label="Data preferida" type="date" value={form.preferredDate} onChange={(value) => setForm({ ...form, preferredDate: value })} />
                   <div>
                     <span id={periodId} className="text-xs font-black uppercase tracking-normal text-neutral-500">Período</span>
@@ -248,14 +312,14 @@ export function CTASection({ settings }: { settings: SiteSettings }) {
             </Button>
 
             {step < 3 ? (
-              <Button type="button" disabled={!canAdvance} onClick={() => setStep((current) => Math.min(3, current + 1))}>
+              <Button type="button" aria-disabled={!canAdvance} onClick={goNext}>
                 Próximo
                 <ChevronRight className="h-4 w-4" />
               </Button>
             ) : (
-              <Button type="submit" disabled={!canAdvance} className="sm:min-w-56">
-                <Send className="h-4 w-4" />
-                Enviar pelo WhatsApp
+              <Button type="submit" aria-disabled={!canAdvance} disabled={submitStatus === "loading"} className="sm:min-w-56" aria-live="polite">
+                {submitStatus === "loading" ? <Loader2 className="h-4 w-4 animate-spin" /> : submitStatus === "success" ? <CheckCircle2 className="h-4 w-4" /> : <Send className="h-4 w-4" />}
+                {submitStatus === "loading" ? "Abrindo WhatsApp..." : submitStatus === "success" ? "Mensagem preparada" : "Enviar pelo WhatsApp"}
               </Button>
             )}
           </div>
@@ -273,10 +337,13 @@ type FieldProps = {
   type?: string;
   inputMode?: "numeric" | "tel";
   autoComplete?: string;
+  error?: string;
+  required?: boolean;
 };
 
-function Field({ label, value, onChange, placeholder, type = "text", inputMode, autoComplete }: FieldProps) {
+function Field({ label, value, onChange, placeholder, type = "text", inputMode, autoComplete, error, required }: FieldProps) {
   const id = useId();
+  const errorId = `${id}-error`;
 
   return (
     <div>
@@ -287,10 +354,14 @@ function Field({ label, value, onChange, placeholder, type = "text", inputMode, 
         value={value}
         inputMode={inputMode}
         autoComplete={autoComplete}
+        required={required}
+        aria-invalid={Boolean(error)}
+        aria-describedby={error ? errorId : undefined}
         onChange={(event) => onChange(event.target.value)}
         placeholder={placeholder}
-        className="mt-2 h-12 w-full rounded-lg border border-border px-4 text-sm outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/30"
+        className={`mt-2 h-12 w-full rounded-lg border px-4 text-sm outline-none transition focus:ring-2 ${error ? "border-red-600 focus:border-red-600 focus:ring-red-200" : "border-border focus:border-accent focus:ring-accent/30"}`}
       />
+      {error && <p id={errorId} className="mt-1.5 text-xs font-semibold text-red-700">{error}</p>}
     </div>
   );
 }

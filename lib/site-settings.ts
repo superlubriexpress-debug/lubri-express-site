@@ -83,6 +83,7 @@ export const getPublicSiteSettings = cache(async (): Promise<SiteSettings> => {
   try {
     const response = await fetch(`${url}/rest/v1/site_settings?id=eq.main&select=*`, {
       headers: { apikey: anonKey, Authorization: `Bearer ${anonKey}` },
+      signal: AbortSignal.timeout(5000),
       next: { revalidate: 300, tags: [SITE_SETTINGS_TAG] },
     });
 

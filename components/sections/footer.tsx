@@ -7,6 +7,7 @@ import { assets, company, navItems } from "@/lib/site-data";
 import type { SiteSettings } from "@/lib/site-settings-types";
 
 export function Footer({ settings }: { settings: SiteSettings }) {
+  const footerLinks = [...navItems, { label: "Sobre", href: "/sobre" }, { label: "Conteúdos", href: "/blog" }];
   const hoursLines = settings.hoursText.split("|").map((line) => line.trim()).filter(Boolean);
   const socialLinks = [
     {
@@ -48,6 +49,8 @@ export function Footer({ settings }: { settings: SiteSettings }) {
               href={settings.mapsUrl}
               target="_blank"
               rel="noreferrer"
+              data-analytics-event="route_click"
+              data-analytics-label="Rodapé - endereço"
               className="mt-5 inline-flex max-w-md items-start gap-3 text-[15px] font-medium leading-7 text-neutral-300 transition hover:text-white"
             >
               <MapPin className="mt-1 h-4 w-4 shrink-0 text-accent" />
@@ -58,7 +61,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
           <nav aria-label="Links do rodapé">
             <h3 className="font-display text-xs font-black uppercase tracking-[0.18em] text-neutral-500">Navegação</h3>
             <div className="mt-5 grid gap-3.5">
-              {navItems.map((item) => (
+              {footerLinks.map((item) => (
                 <a key={item.href} href={item.href} className="w-fit text-[15px] font-bold leading-6 text-neutral-200 transition hover:translate-x-1 hover:text-accent">
                   {item.label}
                 </a>
@@ -77,6 +80,8 @@ export function Footer({ settings }: { settings: SiteSettings }) {
               </div>
               <a
                 href={`tel:+${settings.phoneHref}`}
+                data-analytics-event="phone_click"
+                data-analytics-label="Rodapé - telefone"
                 className="flex items-center gap-3 text-[15px] font-black text-neutral-100 transition hover:text-white"
               >
                 <Phone className="h-4 w-4 shrink-0 text-accent" />
@@ -93,6 +98,8 @@ export function Footer({ settings }: { settings: SiteSettings }) {
               target="_blank"
               rel="noreferrer"
               aria-label="Falar com a Lubri Express pelo WhatsApp"
+              data-analytics-event="whatsapp_click"
+              data-analytics-label="Rodapé - WhatsApp"
               className="footer-whatsapp group relative mt-5 flex min-h-16 items-center gap-3 overflow-hidden rounded-xl bg-accent px-4 text-ink shadow-glow transition hover:-translate-y-1 hover:bg-[#ffd43b]"
             >
               <span className="relative z-10 grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-black/10">

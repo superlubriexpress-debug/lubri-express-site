@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/navbar";
 import { BrandsSection } from "@/components/sections/brands";
+import { AboutSection } from "@/components/sections/about";
 import { CTASection } from "@/components/sections/cta";
 import { DifferentialsSection } from "@/components/sections/differentials";
 import { FAQSection } from "@/components/sections/faq";
@@ -32,6 +33,7 @@ export async function SitePage({ brandDisplay = "logos" }: SitePageProps) {
         <TransmissionSection />
         <ProcessSection />
         <DifferentialsSection />
+        <AboutSection />
         <StatsSection />
         <BrandsSection display={brandDisplay} />
         <GallerySection />

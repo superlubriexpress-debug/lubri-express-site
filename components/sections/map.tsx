@@ -43,13 +43,13 @@ export function MapSection({ settings }: { settings: SiteSettings }) {
 
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
               <Button asChild>
-                <a href={settings.mapsUrl} target="_blank" rel="noreferrer">
+                <a href={settings.mapsUrl} target="_blank" rel="noreferrer" data-analytics-event="route_click" data-analytics-label="Mapa - traçar rota">
                   <MapPin className="h-4 w-4" />
                   Traçar rota
                 </a>
               </Button>
               <Button asChild variant="ghost" className="border border-white/15">
-                <a href={`tel:+${settings.phoneHref}`}>
+                <a href={`tel:+${settings.phoneHref}`} data-analytics-event="phone_click" data-analytics-label="Mapa - ligar agora">
                   <Phone className="h-4 w-4" />
                   Ligar agora
                 </a>

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight, CheckCircle2, MapPin, Phone, ShieldCheck, Timer } from "lucide-react";
 
 import { BookingButton } from "@/components/booking/booking-button";
@@ -30,18 +31,21 @@ export function HeroSection({ settings }: { settings: SiteSettings }) {
       </div>
 
       <div className="container-x relative grid min-h-screen items-center gap-12 pb-16 pt-32 lg:grid-cols-[1.08fr_0.92fr]">
-        <div className="max-w-3xl">
+        <div className="min-w-0 max-w-[calc(100vw-2.5rem)] sm:max-w-3xl">
           <span className="eyebrow-inv rounded-full bg-accent px-4 py-2 text-ink">Auto Center em Itapetininga</span>
-          <h1 className="h-display mt-7 max-w-3xl text-5xl leading-none text-white sm:text-6xl lg:text-7xl">
-            Troca de óleo, revisão e <span className="text-accent">diagnóstico</span> com atendimento direto.
+          <h1 className="h-display mt-7 max-w-3xl text-[2.55rem] leading-[1.03] text-white sm:text-6xl lg:text-7xl">
+            <span className="block sm:inline">Troca de óleo,</span>{" "}
+            <span className="block sm:inline">revisão e</span>{" "}
+            <span className="block text-accent sm:inline">diagnóstico</span>{" "}
+            <span className="block sm:inline">com atendimento direto.</span>
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-neutral-200 sm:text-xl">
+          <p className="mt-6 max-w-[calc(100vw-2.5rem)] break-words text-base leading-8 text-neutral-200 sm:max-w-2xl sm:text-xl">
             Oficina para quem quer resolver o carro sem perder tempo: você solicita o atendimento, combina o melhor horário e recebe orientação clara sobre o serviço.
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <BookingButton>Solicitar atendimento</BookingButton>
-            <Button asChild variant="ghost" className="border border-white/25">
-              <a href={settings.mapsUrl} target="_blank" rel="noreferrer">
+            <BookingButton className="w-full sm:w-auto">Solicitar atendimento</BookingButton>
+            <Button asChild variant="ghost" className="w-full border border-white/25 sm:w-auto">
+              <a href={settings.mapsUrl} target="_blank" rel="noreferrer" data-analytics-event="route_click" data-analytics-label="Hero - abrir rota">
                 <MapPin className="h-4 w-4" />
                 Abrir rota
               </a>
@@ -84,10 +88,10 @@ export function HeroSection({ settings }: { settings: SiteSettings }) {
               ))}
             </div>
             <Button asChild className="mt-7 w-full">
-              <a href="#cambio">
+              <Link href="/cambio-automatico">
                 Ver detalhes
                 <ArrowRight className="h-4 w-4" />
-              </a>
+              </Link>
             </Button>
           </div>
         </aside>

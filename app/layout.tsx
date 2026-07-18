@@ -1,11 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
-import Script from "next/script";
 
 import "./globals.css";
+import { AnalyticsProviders } from "@/components/analytics-providers";
+import { AnalyticsClickTracker } from "@/components/analytics-click-tracker";
+import { JsonLd } from "@/components/seo/json-ld";
 import { SourceShortcutGuard } from "@/components/security/source-shortcut-guard";
 import { company } from "@/lib/site-data";
-import { autoRepairSchema } from "@/lib/schema";
+import { businessSchemaGraph } from "@/lib/schema";
 import { getPublicSiteSettings } from "@/lib/site-settings";
 
 const inter = Inter({
@@ -26,6 +28,7 @@ const seoDescription =
 
 export const metadata: Metadata = {
   metadataBase: new URL(company.siteUrl),
+  applicationName: company.name,
   title: {
     default: seoTitle,
     template: `%s | ${company.name}`,
@@ -47,6 +50,10 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Lubri Express Auto Center" }],
   creator: "Gean Maikon",
+  publisher: company.name,
+  category: "Centro automotivo",
+  referrer: "origin-when-cross-origin",
+  formatDetection: { telephone: false, address: false, email: false },
   alternates: {
     canonical: "/",
   },
@@ -93,6 +100,15 @@ export const metadata: Metadata = {
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
   manifest: "/manifest.webmanifest",
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+  },
+  other: {
+    "geo.region": "BR-SP",
+    "geo.placename": "Itapetininga",
+    "geo.position": "-23.5962368;-48.0411648",
+    ICBM: "-23.5962368, -48.0411648",
+  },
 };
 
 export const viewport: Viewport = {
@@ -112,12 +128,9 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           Pular para o conteúdo
         </a>
         {children}
-        <Script
-          id="lubri-express-auto-repair-schema"
-          type="application/ld+json"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(autoRepairSchema(settings)) }}
-        />
+        <JsonLd id="lubri-express-business-schema" data={businessSchemaGraph(settings)} />
+        <AnalyticsProviders />
+        <AnalyticsClickTracker />
       </body>
     </html>
   );

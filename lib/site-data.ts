@@ -273,10 +273,10 @@ export const trustItems = [
 ];
 
 export const stats = [
-  { value: "15+", label: "soluções automotivas" },
-  { value: "08h–18h", label: "segunda a sexta" },
-  { value: "Leves", label: "nacionais e importados" },
-  { value: "1 oficina", label: "atendimento em Itapetininga" },
+  { value: 5000, prefix: "+", suffix: "", decimals: 0, label: "veículos atendidos" },
+  { value: 4.8, prefix: "", suffix: "", decimals: 1, label: "avaliação informada no Google" },
+  { value: 1, prefix: "", suffix: " equipe", decimals: 0, label: "especializada em câmbio automático" },
+  { value: 2, prefix: "", suffix: " perfis", decimals: 0, label: "nacionais e importados" },
 ];
 
 export const brands = [
@@ -386,6 +386,70 @@ export const faqs = [
   {
     q: "Dá para pedir orçamento pelo WhatsApp?",
     a: "Sim. O formulário monta uma mensagem com serviço, veículo e dados de contato para enviar diretamente ao WhatsApp da loja.",
+  },
+  {
+    q: "Qual é o horário de atendimento?",
+    a: "De segunda a sexta, das 08:00 às 18:00; aos sábados, das 08:00 às 13:00. A oficina fecha aos domingos.",
+  },
+  {
+    q: "É necessário agendar antes de ir?",
+    a: "O agendamento é recomendado para organizar a avaliação e reduzir o tempo de espera, principalmente em serviços que exigem equipamento específico.",
+  },
+  {
+    q: "Onde fica a Lubri Express?",
+    a: "Na Rua Quintino Bocaiuva, 318, Centro, em Itapetininga - SP. O botão Como chegar abre a rota no mapa.",
+  },
+  {
+    q: "Vocês fazem troca de óleo de câmbio manual?",
+    a: "Sim. A equipe confirma a especificação e o procedimento adequado para o veículo antes da troca.",
+  },
+  {
+    q: "Todo câmbio automático pode usar a máquina?",
+    a: "Não. O método depende do projeto do câmbio e da condição do veículo. A avaliação técnica define o procedimento indicado.",
+  },
+  {
+    q: "Vocês fazem limpeza de bicos?",
+    a: "Sim. A limpeza faz parte dos serviços de injeção eletrônica e é indicada após diagnóstico, quando realmente necessária.",
+  },
+  {
+    q: "Atendem motor de partida e alternador?",
+    a: "Sim. A elétrica automotiva inclui avaliação de partida, carga, conexões, iluminação e acessórios.",
+  },
+  {
+    q: "Instalam som, travas e alarmes?",
+    a: "Sim. A instalação é feita conforme a compatibilidade elétrica do veículo e o equipamento escolhido.",
+  },
+  {
+    q: "A oficina faz revisão antes de viagem?",
+    a: "Sim. A revisão pode incluir pneus, freios, fluidos, iluminação, arrefecimento, suspensão e outros itens de segurança.",
+  },
+  {
+    q: "Como funciona o alinhamento grátis do Tenda?",
+    a: "Clientes que compram pneus no supermercado Tenda recebem o alinhamento grátis na Lubri Express, conforme as regras e a comprovação da ação vigente.",
+  },
+  {
+    q: "Alinhamento e balanceamento são a mesma coisa?",
+    a: "Não. O alinhamento corrige os ângulos das rodas; o balanceamento reduz vibrações causadas por desequilíbrio do conjunto roda e pneu.",
+  },
+  {
+    q: "Vocês verificam suspensão e freios?",
+    a: "Sim. A avaliação considera folgas, ruídos, desgaste, fluido, pastilhas, discos e demais componentes relacionados.",
+  },
+  {
+    q: "Fazem higienização de ar-condicionado?",
+    a: "Sim. O serviço ajuda a reduzir odores e resíduos, além de permitir a inspeção do filtro de cabine.",
+  },
+  {
+    q: "Posso levar peças ou óleo?",
+    a: "Converse com a equipe antes. A aplicação depende de compatibilidade, procedência, especificação e condições de garantia do serviço.",
+  },
+  {
+    q: "A avaliação já autoriza o reparo?",
+    a: "Não. A equipe explica a necessidade e apresenta o próximo passo para sua aprovação antes da execução.",
+  },
+  {
+    q: "Quais formas de pagamento são aceitas?",
+    a: "Consulte as opções disponíveis com a equipe no momento do orçamento, pois condições e parcelamento podem variar.",
   },
 ];
 

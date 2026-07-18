@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { MapPin, Menu } from "lucide-react";
+import Link from "next/link";
+import { CalendarCheck, MapPin, Menu } from "lucide-react";
 
 import { BookingButton } from "@/components/booking/booking-button";
 import { Button } from "@/components/ui/button";
@@ -72,13 +73,13 @@ export function Navbar({ settings }: { settings: SiteSettings }) {
             </SheetContent>
           </Sheet>
 
-          <a href="/" className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-3">
             <Image src={assets.logo} alt="Lubri Express Auto Center" width={48} height={48} priority className="h-11 w-11 object-contain" />
             <div className="leading-tight">
               <div className="font-display text-base font-bold text-white sm:text-lg">Lubri Express</div>
               <div className="text-[10px] font-black uppercase tracking-[0.12em] text-accent sm:text-xs">Auto Center</div>
             </div>
-          </a>
+          </Link>
         </div>
 
         <nav className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/5 p-1 lg:flex">
@@ -102,6 +103,8 @@ export function Navbar({ settings }: { settings: SiteSettings }) {
             href={settings.mapsUrl}
             target="_blank"
             rel="noreferrer"
+            data-analytics-event="route_click"
+            data-analytics-label="Navegação - como chegar"
             className="inline-flex h-14 min-w-44 items-center gap-3 rounded-lg border border-white/15 bg-white/5 px-5 font-display text-xs font-bold text-white transition hover:bg-white/10"
           >
             <MapPin className="h-5 w-5 text-accent" />
@@ -112,9 +115,17 @@ export function Navbar({ settings }: { settings: SiteSettings }) {
           </a>
         </div>
 
-        <BookingButton size="sm" className="lg:hidden">
-          Agendar
-        </BookingButton>
+        <Button
+          type="button"
+          size="icon"
+          className="h-12 w-12 shrink-0 lg:hidden"
+          aria-label="Agendar atendimento"
+          onClick={() => {
+            window.dispatchEvent(new CustomEvent("lubri:open-booking"));
+          }}
+        >
+          <CalendarCheck className="h-5 w-5" />
+        </Button>
       </div>
     </header>
   );

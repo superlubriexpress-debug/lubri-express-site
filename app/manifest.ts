@@ -7,9 +7,12 @@ export default function manifest(): MetadataRoute.Manifest {
     name: company.name,
     short_name: company.shortName,
     description: company.description,
+    lang: "pt-BR",
+    categories: ["automotive", "business"],
     start_url: "/",
     scope: "/",
     display: "standalone",
+    orientation: "portrait-primary",
     background_color: "#111111",
     theme_color: "#FFC400",
     icons: [

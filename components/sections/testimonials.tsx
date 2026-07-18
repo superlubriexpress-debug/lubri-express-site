@@ -1,10 +1,11 @@
-import { ArrowUpRight, ClipboardCheck, MessageSquareText, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, ClipboardCheck, MessageSquareText, ShieldCheck, Star } from "lucide-react";
 
+import { FadeIn } from "@/components/motion/fade-in";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import type { SiteSettings } from "@/lib/site-settings-types";
 
-const commitments = [
+const reviewSignals = [
   {
     icon: ClipboardCheck,
     title: "Avaliação antes da execução",
@@ -25,37 +26,47 @@ const commitments = [
 export function TestimonialsSection({ settings }: { settings: SiteSettings }) {
   return (
     <section id="avaliacoes" className="bg-neutral-50 py-20 sm:py-28">
-      <div className="container-x grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
-        <div>
-          <Badge>Confiança</Badge>
-          <h2 className="h-display mt-5 text-4xl leading-tight sm:text-5xl">Transparência em cada etapa do atendimento.</h2>
-          <p className="mt-5 max-w-xl text-lg leading-8 text-neutral-600">
-            Em vez de promessas genéricas, a Lubri Express trabalha com avaliação, orientação e aprovação antes do serviço.
-          </p>
-          <Button asChild variant="dark" className="mt-7">
-            <a href={settings.mapsUrl} target="_blank" rel="noreferrer">
-              Ver perfil no Google
-              <ArrowUpRight className="h-4 w-4" />
-            </a>
-          </Button>
-        </div>
-
-        <div className="divide-y divide-border border-y border-border">
-          {commitments.map((item) => {
-            const Icon = item.icon;
-
-            return (
-              <article key={item.title} className="grid gap-4 py-6 sm:grid-cols-[3rem_1fr] sm:items-start">
-                <span className="grid h-12 w-12 place-items-center rounded-lg bg-accent text-ink">
-                  <Icon className="h-6 w-6" />
-                </span>
-                <div>
-                  <h3 className="font-display text-xl font-bold">{item.title}</h3>
-                  <p className="mt-2 leading-7 text-neutral-600">{item.text}</p>
+      <div className="container-x">
+        <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
+          <FadeIn>
+            <Badge>Avaliações do Google</Badge>
+            <div className="mt-5 flex items-end gap-4">
+              <strong className="h-display text-6xl leading-none">4.8</strong>
+              <div className="pb-1">
+                <div className="flex gap-1 text-accent" aria-label="4,8 de 5 estrelas">
+                  {Array.from({ length: 5 }).map((_, index) => <Star key={index} className="h-5 w-5 fill-current" aria-hidden="true" />)}
                 </div>
-              </article>
-            );
-          })}
+                <p className="mt-1 text-sm font-semibold text-neutral-500">Nota informada para o perfil da oficina</p>
+              </div>
+            </div>
+            <h2 className="h-display mt-6 text-4xl leading-tight sm:text-5xl">Confiança construída com atendimento claro.</h2>
+            <p className="mt-5 max-w-xl text-lg leading-8 text-neutral-600">
+              A quantidade e os comentários mais recentes ficam no perfil oficial, evitando avaliações desatualizadas ou reproduzidas sem contexto.
+            </p>
+            <Button asChild variant="dark" className="mt-7">
+              <a href={settings.mapsUrl} target="_blank" rel="noreferrer" data-analytics-event="google_profile_click" data-analytics-label="Avaliações - perfil Google">
+                Ver todas as avaliações no Google
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+            </Button>
+          </FadeIn>
+
+          <div className="grid gap-4 md:grid-cols-3">
+            {reviewSignals.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <FadeIn key={item.title} delay={index * 0.06}>
+                  <article className="h-full rounded-lg border border-border bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
+                    <span className="grid h-12 w-12 place-items-center rounded-lg bg-accent text-ink">
+                      <Icon className="h-6 w-6" />
+                    </span>
+                    <h3 className="mt-5 font-display text-xl font-bold">{item.title}</h3>
+                    <p className="mt-3 leading-7 text-neutral-600">{item.text}</p>
+                  </article>
+                </FadeIn>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

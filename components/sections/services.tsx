@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 
 import { BookingButton } from "@/components/booking/booking-button";
@@ -6,6 +7,7 @@ import { FadeIn } from "@/components/motion/fade-in";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { serviceCategories } from "@/lib/site-data";
+import { servicePages } from "@/lib/service-pages";
 
 export function ServicesSection() {
   return (
@@ -74,6 +76,15 @@ export function ServicesSection() {
               </FadeIn>
             );
           })}
+        </div>
+
+        <div className="mt-9 flex flex-wrap gap-2" aria-label="Páginas dos principais serviços">
+          {servicePages.map((service) => (
+            <Link key={service.slug} href={`/${service.slug}`} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-border bg-white px-4 text-sm font-bold transition hover:border-accent hover:bg-accent/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+              {service.name}
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          ))}
         </div>
 
         <div className="mt-10 flex flex-col gap-5 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
