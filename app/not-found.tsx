@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowLeft, House } from "lucide-react";
 
 import { assets } from "@/lib/site-data";
+import { DeveloperCredit } from "@/components/developer-credit";
 
 export default function NotFound() {
   return (
@@ -74,6 +75,7 @@ export default function NotFound() {
               Voltar ao início
               <ArrowLeft className="h-4 w-4" aria-hidden="true" />
             </Link>
+            <DeveloperCredit compact className="mt-4 text-white/55" />
           </div>
 
         </div>

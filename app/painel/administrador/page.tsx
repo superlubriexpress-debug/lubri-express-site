@@ -183,7 +183,7 @@ export default async function AdministratorPage({ searchParams }: AdminPageProps
             >
               <option value="editor">Editor</option>
               <option value="admin">Administrador</option>
-              <option value="owner">Proprietário</option>
+              {admin.role === "owner" && <option value="owner">Proprietário</option>}
             </select>
           </label>
           <div className="hidden items-end gap-2 rounded-lg bg-neutral-50 p-4 text-sm leading-5 text-neutral-600 md:flex">

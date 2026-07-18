@@ -131,11 +131,14 @@ export async function changeAdminPassword(formData: FormData) {
 
   if (!currentPasswordResponse.ok) redirect("/painel/administrador?error=senha-atual");
 
+  const freshAuth = (await currentPasswordResponse.json()) as { access_token?: string };
+  if (!freshAuth.access_token) redirect("/painel/administrador?error=senha");
+
   const response = await fetch(`${url}/auth/v1/user`, {
     method: "PUT",
     headers: {
       apikey: anonKey,
-      Authorization: `Bearer ${admin.accessToken}`,
+      Authorization: `Bearer ${freshAuth.access_token}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ password }),
@@ -143,7 +146,8 @@ export async function changeAdminPassword(formData: FormData) {
   });
 
   if (!response.ok) redirect("/painel/administrador?error=senha");
-  redirect("/painel/administrador?passwordSaved=1");
+  await clearAdminSession();
+  redirect("/login?passwordSaved=1");
 }
 
 export async function createAdminUser(formData: FormData) {
@@ -162,6 +166,7 @@ export async function createAdminUser(formData: FormData) {
   if (!email.includes("@") || !email.includes(".")) redirect("/painel/administrador?error=novo-email");
   if (password.length < 12) redirect("/painel/administrador?error=novo-senha-curta");
   if (password !== confirmation) redirect("/painel/administrador?error=novo-senha-diferente");
+  if (role === "owner" && admin.role !== "owner") redirect("/painel/administrador?error=permissao");
 
   const serviceRoleKey = getSupabaseServiceRoleKey();
   if (!serviceRoleKey) redirect("/painel/administrador?error=service-role");

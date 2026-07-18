@@ -5,6 +5,7 @@ import { ArrowLeft, LockKeyhole, ShieldCheck } from "lucide-react";
 import { redirect } from "next/navigation";
 
 import { loginAction } from "@/app/login/actions";
+import { DeveloperCredit } from "@/components/developer-credit";
 import { assets } from "@/lib/site-data";
 import { isSupabaseConfigured } from "@/lib/site-settings";
 import { getCurrentAdmin } from "@/lib/supabase-auth";
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 type LoginPageProps = {
-  searchParams: Promise<{ error?: string; next?: string }>;
+  searchParams: Promise<{ error?: string; next?: string; passwordSaved?: string }>;
 };
 
 export default async function LoginPage({ searchParams }: LoginPageProps) {
@@ -26,7 +27,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
   const next = params.next?.startsWith("/") && !params.next.startsWith("//") ? params.next : "/painel";
 
   return (
-    <main id="conteudo" className="grid min-h-svh place-items-center bg-[#070707] px-5 py-12 text-white">
+    <main id="conteudo" className="flex min-h-svh flex-col items-center justify-center bg-[#070707] px-5 py-12 text-white">
       <section className="w-full max-w-md rounded-xl border border-white/10 bg-[#111111] p-6 shadow-2xl sm:p-8">
         <div className="flex items-center gap-4 border-b border-white/10 pb-6">
           <Image src={assets.logo} alt="" width={56} height={56} className="h-14 w-14 object-contain" priority />
@@ -53,6 +54,12 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
         {params.error && (
           <p role="alert" className="mt-4 rounded-lg border border-red-500/25 bg-red-500/10 p-3 text-sm text-red-200">
             {params.error}
+          </p>
+        )}
+
+        {params.passwordSaved === "1" && (
+          <p role="status" className="mt-4 rounded-lg border border-green-500/25 bg-green-500/10 p-3 text-sm text-green-100">
+            Senha alterada com sucesso. Entre novamente com a nova senha.
           </p>
         )}
 
@@ -89,6 +96,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
           Voltar ao site
         </Link>
       </section>
+      <DeveloperCredit compact className="mt-7" />
     </main>
   );
 }

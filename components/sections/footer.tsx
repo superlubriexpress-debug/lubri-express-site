@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowUpRight, Clock3, MapPin, Phone } from "lucide-react";
 
 import { FacebookIcon, InstagramIcon, WhatsAppIcon } from "@/components/icons";
+import { DeveloperCredit } from "@/components/developer-credit";
 import { assets, company, navItems } from "@/lib/site-data";
 import type { SiteSettings } from "@/lib/site-settings-types";
 
@@ -150,10 +151,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
               </p>
             )}
           </div>
-          <div className="flex items-center gap-2.5">
-            <span className="text-[9px] font-black uppercase tracking-[0.16em] text-neutral-500">Desenvolvido por</span>
-            <Image src={assets.signature} alt="Gean Maikon" width={112} height={19} className="h-5 w-auto max-w-[112px] object-contain opacity-85" />
-          </div>
+          <DeveloperCredit compact />
         </div>
       </div>
     </footer>

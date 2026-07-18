@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ExternalLink, LogOut, Settings, UserRound } from "lucide-react";
+import { ExternalLink, FileClock, LogOut, Settings, UserRound } from "lucide-react";
 import { redirect } from "next/navigation";
 
 import { logoutAction } from "@/app/painel/actions";
+import { DeveloperCredit } from "@/components/developer-credit";
 import { assets } from "@/lib/site-data";
 import { getCurrentAdmin, hasRefreshSession } from "@/lib/supabase-auth";
 
@@ -53,8 +54,15 @@ export default async function PanelLayout({ children }: Readonly<{ children: Rea
             <UserRound className="h-4 w-4 text-accent" />
             Minha conta
           </Link>
+          <Link href="/atualizacao" className="inline-flex min-h-11 items-center gap-2 rounded-lg px-4 text-sm font-bold transition hover:bg-neutral-100">
+            <FileClock className="h-4 w-4 text-accent" />
+            Atualizações
+          </Link>
         </nav>
         {children}
+        <footer className="mt-10 flex justify-center border-t border-black/10 pt-7 sm:justify-end">
+          <DeveloperCredit compact />
+        </footer>
       </div>
     </div>
   );
