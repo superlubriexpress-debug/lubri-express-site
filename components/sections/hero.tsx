@@ -30,8 +30,8 @@ export function HeroSection({ settings }: { settings: SiteSettings }) {
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/15 to-black" />
       </div>
 
-      <div className="container-x relative grid min-h-screen items-center gap-12 pb-16 pt-32 lg:grid-cols-[1.08fr_0.92fr]">
-        <div className="min-w-0 max-w-[calc(100vw-2.5rem)] sm:max-w-3xl">
+      <div className="container-x relative grid min-h-screen items-center gap-12 pb-16 pt-28 sm:pt-32 lg:grid-cols-[1.08fr_0.92fr]">
+        <div className="w-full min-w-0 max-w-3xl">
           <span className="eyebrow-inv rounded-full bg-accent px-4 py-2 text-ink">Auto Center em Itapetininga</span>
           <h1 className="h-display mt-7 max-w-3xl text-[2.55rem] leading-[1.03] text-white sm:text-6xl lg:text-7xl">
             <span className="block sm:inline">Troca de óleo,</span>{" "}
@@ -39,12 +39,12 @@ export function HeroSection({ settings }: { settings: SiteSettings }) {
             <span className="block text-accent sm:inline">diagnóstico</span>{" "}
             <span className="block sm:inline">com atendimento direto.</span>
           </h1>
-          <p className="mt-6 max-w-[calc(100vw-2.5rem)] break-words text-base leading-8 text-neutral-200 sm:max-w-2xl sm:text-xl">
+          <p className="mt-6 w-full max-w-2xl break-words text-base leading-8 text-neutral-200 sm:text-xl">
             Oficina para quem quer resolver o carro sem perder tempo: você solicita o atendimento, combina o melhor horário e recebe orientação clara sobre o serviço.
           </p>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <BookingButton className="w-full sm:w-auto">Solicitar atendimento</BookingButton>
-            <Button asChild variant="ghost" className="w-full border border-white/25 sm:w-auto">
+          <div className="mt-9 flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <BookingButton className="w-full max-w-full sm:w-auto">Solicitar atendimento</BookingButton>
+            <Button asChild variant="ghost" className="w-full max-w-full border border-white/25 sm:w-auto">
               <a href={settings.mapsUrl} target="_blank" rel="noreferrer" data-analytics-event="route_click" data-analytics-label="Hero - abrir rota">
                 <MapPin className="h-4 w-4" />
                 Abrir rota
@@ -52,7 +52,7 @@ export function HeroSection({ settings }: { settings: SiteSettings }) {
             </Button>
           </div>
 
-          <div className="mt-10 grid gap-3 sm:grid-cols-3">
+          <div className="mt-10 grid w-full gap-3 sm:grid-cols-3">
             {highlights.map((item) => {
               const Icon = item.icon;
               return (

@@ -5,7 +5,7 @@
 }
 
 .container-x {
-  width: min(calc(100% - 5rem), 1280px);
+  width: min(calc(100% - 2.5rem), 1280px);
   max-width: 1280px;
   margin-inline: auto;
   padding-inline: 0;
@@ -13,7 +13,7 @@
 
 @media (min-width: 640px) {
   .container-x {
-    width: min(calc(100% - 2.5rem), 1280px);
+    width: min(calc(100% - 3rem), 1280px);
   }
 }
 
